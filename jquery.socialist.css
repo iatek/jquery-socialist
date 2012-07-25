@@ -1,0 +1,82 @@
+#content {
+    font-family:arial;
+}
+.socialist {
+    box-shadow: #999 1px 1px 1px 0px;
+    *border:1px solid #333;
+    background-color: #fefefe;
+    font-size: 11px;
+    line-height: 1.4em;
+    margin: 10px;
+    *padding: 5px;
+    width: 200px;
+}
+.socialist .head {
+    padding:5px;
+}
+.socialist .content {
+    *min-height: 140px;
+    border:7px solid #fff;    
+}
+.socialist .content div {
+    padding:5px;
+}
+.socialist .foot {
+    color:#fff;
+    padding:5px;
+    background-color:#888;
+    height:30px;
+}  
+.socialist .foot a {
+    color:#fff;
+}  
+.socialist .api {
+    float:right;
+}
+.socialist img {
+    width: 170px;
+    margin:5px;
+    border:1px solid #ddd;
+}
+.socialist span.date {
+    margin-left:0px;
+    font-size:80%;
+}
+.socialist-twitter img {
+    width: 50px;
+    float:left;
+}
+.socialist-pinterest .foot {
+    background-color:#cc0000;
+}  
+.socialist-pinterest img {
+    width: 150px;
+}   
+.socialist-linkedin .content img {
+    width: auto;
+    float:left;
+}
+.socialist-linkedin .foot {
+    background-color:#4875B4;
+}
+.socialist-rss .foot {
+    background-color:#ff6600;
+}
+.socialist-facebook .foot {
+   background-color:#3B5998;
+}  
+.socialist-twitter .foot {
+   background-color:#4099ff;
+}
+.socialist-tumblr .foot {
+   background-color:#00225F;
+}
+.socialist-craigslist .foot {
+   background-color:#700070;
+}
+.socialist-google .foot {
+   background-color:#d61e1e;
+}
+.socialist-google .content img {
+    width: auto;
+}

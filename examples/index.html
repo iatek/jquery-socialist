@@ -1,0 +1,30 @@
+
+<html>
+<head>
+<script src='https://github.com/desandro/isotope/raw/master/jquery.isotope.min.js'></script>
+<script src='https://raw.github.com/padolsey/jQuery-Plugins/master/cross-domain-ajax/jquery.xdomainajax.js'></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#content').socialist({
+        networks: [
+            {name:'linkedin',id:'buddy-media'},
+            {name:'facebook',id:'in1dotcom'},
+            {name:'pinterest',id:'potterybarn'},
+            {name:'twitter',id:'in1dotcom'},
+            {name:'googleplus',id:'105588557807820541973/posts'},
+            {name:'rss',id:' http://feeds.feedburner.com/good/lbvp'},
+            {name:'rss',id:'http://www.makebetterwebsites.com/feed/'},
+            {name:'craigslist',id:'boo',areaName:'southcoast'},
+            {name:'rss',id:'http://www.houzz.com/getGalleries/featured/out-rss'}
+           ],
+        isotope:false,
+        random:false,
+        fields:['source','heading','text','date','image','followers','likes']
+    });
+});
+</script>
+</head>
+<body>
+    <div id="content"></div>
+</body>
+</html>
