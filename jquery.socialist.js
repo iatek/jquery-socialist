@@ -1,3 +1,11 @@
+/**
+ * jQuery.socialist - social media plugin
+ * ---
+ * @author Carol Skelly (http://iatek.com)
+ * @version 0.1
+ * ---
+ */
+
 ;(function ( $, window, document, undefined ) {
 
     $.fn.socialist = function(method) {
@@ -30,23 +38,21 @@
                                 
                             for (var i = 0; i < queue.length; i++) {
                                queue[i].children().appendTo($element);
-                               //console.log("apply"+i);
                             }
                           
-                            //queue = [];
                             sortParam = '';
                             if (settings.random){sortParam='random'};
                             
-                            //done - load isotope?
+                            // where done with ajax - load isotope?
                             if (settings.isotope) {
                                 $element.imagesLoaded(function(){                                  //
                                     console.log("loading iso");
-                                $element.isotope ({
-                                    transformsEnabled: false,
-                                    sortBy : sortParam
-                                })
-                            });
-                                                       }
+                                    $element.isotope ({
+                                        transformsEnabled: false,
+                                        sortBy : sortParam
+                                    })
+                                });
+                            }
                         },function(){
                             console.log('some requests failed.')
                         });
@@ -66,7 +72,7 @@
                 $.each(eval(apiParser.resultsSelector), function(i,item) {
 
                     var $elem = $(item);
-                    //console.log(apiParser.name
+                    
                     try{
                     
                         if (eval(apiParser.preCondition)) {
@@ -91,14 +97,6 @@
 
                             // link href
                             linkHref="#";
-                            
-                            // link title - tooltip
-                            if (apiParser.linkTip==null){
-                                linkTip="in1";
-                            }
-                            else {
-                                linkTip=eval(apiParser.linkTipSelector);
-                            }
                             
                             // image src
                             if (apiParser.imgSrcSelector==null){
@@ -187,47 +185,41 @@
                     $shareDiv = $('<div class="share"><a href="#" title='+itemObj.api+'>fb</a>|<a href="#" class="x">tw</a></div>'),
                     $dateSpan = $('<span class="date"/>'),
                     $footDiv = $('<div class="foot"/>');
-                
-               /*
-                  if (fields.indexOf('heading')!=-1){                                                                            $headLnk.text(itemObj.heading);
-                      $headLnk.appendTo($headDiv);                                                    
-                      $headDiv.appendTo(container);
-                }
-                */
-                
-                if (fields.indexOf('image')!=-1 && itemObj.img.src){                                   
-                    $img.appendTo($imgLnk);
-                    $imgLnk.appendTo($contentDiv);
-                    //$imgDiv.addClass('socialist-'+itemObj.api);
-               }
 
-                if (fields.indexOf('text')!=-1){                                                                      $('<div>'+itemObj.txt+'</div>').appendTo($contentDiv);
-                }
-                
-                if (fields.indexOf('text')!=-1 || fields.indexOf('image')!=-1) {
-                $contentDiv.appendTo(container);            
-                }
+                    if (fields.indexOf('image')!=-1 && itemObj.img.src){                                   
+                        $img.appendTo($imgLnk);
+                        $imgLnk.appendTo($contentDiv);
+                    }
+                    
+                    if (fields.indexOf('text')!=-1){
+                        $('<div>'+itemObj.txt+'</div>').appendTo($contentDiv);
+                    }
+                    
+                    if (fields.indexOf('text')!=-1 || fields.indexOf('image')!=-1) {
+                        $contentDiv.appendTo(container);            
+                    }
                                                    
-                if (fields.indexOf('share')!=-1){
-                    $shareDiv.appendTo(container);
-                }
-                
-                
-                $source.appendTo($footDiv);
-                 if (fields.indexOf('source')!=-1){                                                                      $sourceLnk.text(itemObj.heading);
-                  $sourceLnk.appendTo($sourceLnkDiv);                                                                                     
-                  $sourceLnkDiv.appendTo($source);                                                                                        
-                }
-                
-                 if (fields.indexOf('date')!=-1){
-                    $dateSpan.text(itemObj.date);                            
-                   $dateSpan.appendTo($source);
-                }
+                    if (fields.indexOf('share')!=-1){
+                        $shareDiv.appendTo(container);
+                    }
+                    
+                    
+                    $source.appendTo($footDiv);
+                    if (fields.indexOf('source')!=-1){
+                        $sourceLnk.text(itemObj.heading);
+                        $sourceLnk.appendTo($sourceLnkDiv);                                                                                     
+                        $sourceLnkDiv.appendTo($source);                                                                                        
+                    }
+                    
+                    if (fields.indexOf('date')!=-1){
+                        $dateSpan.text(itemObj.date);                            
+                        $dateSpan.appendTo($source);
+                    }
                                                    
-                $apiSpan.appendTo($source);
-                $footDiv.appendTo(container);
-                
-                return container;
+                    $apiSpan.appendTo($source);
+                    $footDiv.appendTo(container);
+                    
+                    return container;
             },
             networkDefs: {
                 rss:{url:"http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=7&callback=?&q=|id|",dataType:"json",parser:{
@@ -250,7 +242,8 @@
                     preCondition: "$(item.content).find(\"img[src]:contains('http')\")"
                     }
                 },
-                facebook:{url:'http://graph.facebook.com/|id|/photos',img:'',dataType:'json',parser:{name: "facebook",
+                facebook:{url:'http://graph.facebook.com/|id|/photos',img:'',dataType:'json',parser:{
+                    name: "facebook",
                     resultsSelector: "data.data",
                     heading: "Facebook",
                     headingSelector: "item.from.name",
@@ -283,8 +276,8 @@
                     name: "linkedin",
                     resultsSelector:"$(data.responseText).find('div.feed-body:lt(|num|)')",
                     heading: "LinkedIn",
-                            headingSelector: "$elem.find('a:first').text()",
-                            txtSelector: "($elem.find('a:last').text())||$elem.find('p.share-desc').html()",                    imgSrcSelector: "$elem.find('.feed-photo').attr('src')||$elem.find('.has-photo img').attr('src')",                    
+                    headingSelector: "$elem.find('a:first').text()",
+                    txtSelector: "($elem.find('a:last').text())||$elem.find('p.share-desc').html()",                    imgSrcSelector: "$elem.find('.feed-photo').attr('src')||$elem.find('.has-photo img').attr('src')",                    
                     imgSrcProcessor: null,
                     imgHrefSelector: "$elem.find('a').attr('href')",
                     imgAltSelector: "$elem.find('a').text()",
@@ -292,8 +285,8 @@
                     link: "#",
                     preProcessor: null,
                     preCondition: "true"}
-               },
-                in1:{url:'http://in1.com/cast',img:'<img src="">'},
+                },
+                
                 tumblr:{url:'http://www.tumblr.com/',img:''},
                 digg:{url:'http://digg.com/',img:''},
                 googleplus:{url:'https://plus.google.com/|id|',img:'',dataType:'text',parser:{
@@ -312,7 +305,7 @@
                     preCondition: "true"}},
                 instagram:{url:'',dataType:'json',img:{},parser:{
                                  
-                }},
+                    }},
                 pinterest:{url:'http://pinterest.com/|id|/',img:'',dataType:"text",parser:{
                     name: "pinterest",
                     resultsSelector:"$(data.responseText).find('a.PinImage:lt(8),div.pinBoard:lt(8)')",
@@ -340,7 +333,7 @@
                     link: "#",
                     preProcessor: null,
                     preCondition: "true"}
-                                 }
+                }
             },
             fixCase:function(string)
             {
@@ -367,53 +360,61 @@
                 return w.replace(/(<([^>]+)>)|nbsp;|\s{2,}|/ig,"");
 
             },
-             timeAgo: function (time){
-                    time = time.replace('+0000','Z');
-    var date = new Date((time || "").replace(/-/g,"/").replace(/[TZ]/g," ")),
-        diff = (((new Date()).getTime() - date.getTime()) / 1000),
-        day_diff = Math.floor(diff / 86400);
-            
-    if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 )
-        return;
-            
-    return day_diff == 0 && (
-            diff < 60 && "just now" ||
-            diff < 120 && "1 minute ago" ||
-            diff < 3600 && Math.floor( diff / 60 ) + " minutes ago" ||
-            diff < 7200 && "1 hour ago" ||
-            diff < 86400 && Math.floor( diff / 3600 ) + " hours ago") ||
-        day_diff == 1 && "Yesterday" ||
-        day_diff < 7 && day_diff + " days ago" ||
-        day_diff < 31 && Math.ceil( day_diff / 7 ) + " weeks ago";
-},
-
-            timeSince: function (date) {
-
-    var seconds = Math.floor((new Date() - date) / 1000);
-
-    var interval = Math.floor(seconds / 31536000);
-
-    if (interval > 1) {
-        return interval + " years";
-    }
-    interval = Math.floor(seconds / 2592000);
-    if (interval > 1) {
-        return interval + " months";
-    }
-    interval = Math.floor(seconds / 86400);
-    if (interval > 1) {
-        return interval + " days";
-    }
-    interval = Math.floor(seconds / 3600);
-    if (interval > 1) {
-        return interval + " hours";
-    }
-    interval = Math.floor(seconds / 60);
-    if (interval > 1) {
-        return interval + " minutes";
-    }
-    return Math.floor(seconds) + " seconds";
-}
+            timeAgo:function(date_str){
+                date_str = date_str.replace('+0000','Z');
+                var time_formats = [
+                    [60, 'just now', 1],
+                    [120, '1 minute ago', '1 minute from now'],
+                    [3600, 'minutes', 60], 
+                    [7200, '1 hour ago', '1 hour from now'],
+                    [86400, 'hours', 3600], 
+                    [172800, 'yesterday', 'tomorrow'], 
+                    [604800, 'days', 86400], 
+                    [1209600, 'last week', 'next week'], 
+                    [2419200, 'weeks', 604800], 
+                    [4838400, 'last month', 'next month'], 
+                    [29030400, 'months', 2419200], 
+                    [58060800, 'last year', 'next year'], 
+                    [2903040000, 'years', 29030400], 
+                    [5806080000, 'last century', 'next century'], 
+                    [58060800000, 'centuries', 2903040000] 
+                ];
+                var time = ('' + date_str).replace(/-/g,"/").replace(/[TZ]/g," ").replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+                if(time.substr(time.length-4,1)==".") time =time.substr(0,time.length-4);
+                var seconds = (new Date - new Date(time)) / 1000;
+                var token = 'ago', list_choice = 1;
+                if (seconds < 0) {
+                    seconds = Math.abs(seconds);
+                    token = 'from now';
+                    list_choice = 2;
+                }
+                var i = 0, format;
+                while (format = time_formats[i++])
+                    if (seconds < format[0]) {
+                        if (typeof format[2] == 'string')
+                            return format[list_choice];
+                        else
+                            return Math.floor(seconds / format[2]) + ' ' + format[1] + ' ' + token;
+                    }
+                return time;
+            },                
+            fixTwitterDate: function(created_at) {
+                    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                    var pattern = /\s/;
+                    created_at = created_at.split(pattern);
+                    for (i = 0, len = created_at.length; i < len; i++){
+                    day_of_week = created_at[0];
+                    day = created_at[2];
+                    month_pos = created_at[1];
+                    month = 0 + months.indexOf(month_pos) + 1; // add 1 because array starts from zero
+                    year = created_at[5];
+                    time = created_at[3];
+                    }
+                    created_at = year+'-'+month+'-'+day+'T'+time+'Z';
+                    
+                    if(created_at != undefined)
+                    return created_at;
+                }
         }
 
         if (methods[method]) {

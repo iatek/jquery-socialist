@@ -1,14 +1,14 @@
 jquery-socialist
 ================
 
-Even if you hate <a href='http://en.wikipedia.org/wiki/Socialism'>socialism</a>, you love this flexible social media plugin.
-jQuery Socialist is a easy-to-use plugin that lets you create a social stream or social "wall" from multiple social networks in one place.
+Even if you hate <a href='http://en.wikipedia.org/wiki/Socialism'>socialism</a>, you love this flexible jQuery social media plugin.
+jQuery Socialist is a plugin that lets you create a social stream or social "wall" from multiple social networks in one place.
 
 Features
 ================
-    - View updates from multiple social networks in appealing layouts
+    - View updates from multiple social networks in responsive visual layouts
     - Supports Facebook, Twitter, LinkedIn, Tumblr, Pinterest, RSS Feeds, Google+ and more..
-
+    
 
 Usage
 ================
@@ -41,7 +41,7 @@ Usage
 Dependencies
 ================
 
-    The dependencies (included with jQuery Socialist) are:
+    The dependencies (included with jQuery Socialist):
 
     - jQuery Isotope Plugin v1.5.19: An exquisite jQuery plugin for magical layouts (http://isotope.metafizzy.co)
     - jQuery Cross Domain Ajax: http://james.padolsey.com/javascript/cross-domain-requests-with-jquery/
