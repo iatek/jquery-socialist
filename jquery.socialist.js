@@ -15,9 +15,9 @@
             init : function(options) {
                 this.socialist.settings = $.extend({}, this.socialist.defaults, options);
                 var networks = this.socialist.settings.networks,
-                    settings = this.socialist.settings;
+                    settings = this.socialist.settings,
                     queue = [],
-                    processList = [];        
+                    processList = [];
                
                 return this.each(function() {
                     var $element = $(this),
@@ -178,7 +178,7 @@
                     $sourceLnk = $('<a href="'+itemObj.img.href+'" title="'+itemObj.link.title+'"></a>'),
                     $sourceLnkDiv = $('<div/>'),
                     path = "https://c9.io/skelly/jquery-socialist/workspace/images/",
-                    $apiSpan = $('<span class="api"><img width=16 height=16 src="'+path+itemObj.api+'-16x16.png" title='+itemObj.api+'/></span>'),
+                    $apiSpan = $('<span class="api"><img width=16 height=16 src="'+path+itemObj.api+'-16x16.png" title="'+itemObj.api+'"></span>'),
                     $contentDiv = $('<div class="content"/>'),
                     $imgLnk = $('<a href="'+itemObj.img.href+'" title="'+itemObj.link.title+'"></a>'),
                     $img = $('<image src="'+itemObj.img.src+'" alt="'+itemObj.img.alt+'">'),
@@ -248,7 +248,7 @@
                     heading: "Facebook",
                     headingSelector: "item.from.name",
                     txtSelector: "item.from.name",
-                    dateSelector: "helpers.timeAgo('2008-01-28T20:24:17Z')",
+                    dateSelector: "helpers.timeAgo(item.created_time)",
                     imgSrcSelector: "(item.images[2].source)||'/spacer.gif'",
                     imgSrcProcessor: null,
                     imgHrefSelector: "item.link",
@@ -263,7 +263,7 @@
                     heading: "Twitter",
                     headingSelector: "item.user.screen_name",
                     txtSelector: "item.text",
-                    dateSelector: "item.created_at",
+                    dateSelector: "helpers.timeAgo(helpers.fixTwitterDate(item.created_at))",
                     imgSrcSelector: "(item.user.profile_image_url)||'/assets/spacer.gif'",
                     imgSrcProcessor: null,
                     imgHrefSelector: "(item.entities.urls[0].url)||'http://www.twitter.com/'",
@@ -277,7 +277,8 @@
                     resultsSelector:"$(data.responseText).find('div.feed-body:lt(|num|)')",
                     heading: "LinkedIn",
                     headingSelector: "$elem.find('a:first').text()",
-                    txtSelector: "($elem.find('a:last').text())||$elem.find('p.share-desc').html()",                    imgSrcSelector: "$elem.find('.feed-photo').attr('src')||$elem.find('.has-photo img').attr('src')",                    
+                    txtSelector: "($elem.find('a:last').text())||$elem.find('p.share-desc').html()",
+                    imgSrcSelector: "$elem.find('.feed-photo').attr('src')||$elem.find('.has-photo img').attr('src')",                    
                     imgSrcProcessor: null,
                     imgHrefSelector: "$elem.find('a').attr('href')",
                     imgAltSelector: "$elem.find('a').text()",
@@ -308,7 +309,7 @@
                     }},
                 pinterest:{url:'http://pinterest.com/|id|/',img:'',dataType:"text",parser:{
                     name: "pinterest",
-                    resultsSelector:"$(data.responseText).find('a.PinImage:lt(8),div.pinBoard:lt(8)')",
+                    resultsSelector:"$(data.responseText).find('a.PinImage:lt(|num|),div.pinBoard:lt(|num|)')",
                     heading: "Pinterest",
                     headingSelector: "helpers.stripHtml($elem.find('h3.serif').html())",
                     txtSelector: "$elem.find('img').attr('alt')",
@@ -355,7 +356,7 @@
             stripHtml:function(w)
             {
                 if (w==null)
-                return;
+                    return;
             
                 return w.replace(/(<([^>]+)>)|nbsp;|\s{2,}|/ig,"");
 
@@ -399,22 +400,22 @@
                 return time;
             },                
             fixTwitterDate: function(created_at) {
-                    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-                    var pattern = /\s/;
-                    created_at = created_at.split(pattern);
-                    for (i = 0, len = created_at.length; i < len; i++){
-                    day_of_week = created_at[0];
-                    day = created_at[2];
-                    month_pos = created_at[1];
-                    month = 0 + months.indexOf(month_pos) + 1; // add 1 because array starts from zero
-                    year = created_at[5];
-                    time = created_at[3];
-                    }
-                    created_at = year+'-'+month+'-'+day+'T'+time+'Z';
-                    
-                    if(created_at != undefined)
-                    return created_at;
+                var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                var pattern = /\s/;
+                created_at = created_at.split(pattern);
+                for (i = 0, len = created_at.length; i < len; i++){
+                day_of_week = created_at[0];
+                day = created_at[2];
+                month_pos = created_at[1];
+                month = 0 + months.indexOf(month_pos) + 1; // add 1 because array starts from zero
+                year = created_at[5];
+                time = created_at[3];
                 }
+                created_at = year+'-'+month+'-'+day+'T'+time+'Z';
+                
+                if(created_at != undefined)
+                return created_at;
+            }
         }
 
         if (methods[method]) {

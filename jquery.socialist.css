@@ -20,12 +20,13 @@
 }
 .socialist .content div {
     padding:5px;
+    color:#666;
 }
 .socialist .foot {
     color:#fff;
     padding:5px;
     background-color:#888;
-    height:30px;
+    height:32px;
 }  
 .socialist .foot a {
     color:#fff;
@@ -33,7 +34,11 @@
 .socialist .api {
     float:right;
 }
-.socialist img {
+.socialist .api img {
+    width:16px;
+    height:16px;
+}  
+.socialist .content img {
     width: 170px;
     margin:5px;
     border:1px solid #ddd;
@@ -42,14 +47,14 @@
     margin-left:0px;
     font-size:80%;
 }
-.socialist-twitter img {
+.socialist-twitter .content img {
     width: 50px;
     float:left;
 }
 .socialist-pinterest .foot {
     background-color:#cc0000;
 }  
-.socialist-pinterest img {
+.socialist-pinterest .content img {
     width: 150px;
 }   
 .socialist-linkedin .content img {
@@ -60,7 +65,7 @@
     background-color:#4875B4;
 }
 .socialist-rss .foot {
-    background-color:#ff6600;
+    background-color:#FF7400;
 }
 .socialist-facebook .foot {
    background-color:#3B5998;
