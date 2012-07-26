@@ -307,7 +307,7 @@
                 instagram:{url:'',dataType:'json',img:{},parser:{
                                  
                     }},
-                pinterest:{url:'http://pinterest.com/|id|/',img:'',dataType:"text",parser:{
+                    pinterest:{url:'http://beta.in1.com/proxy?purl=http://pinterest.com/|id|/',img:'',dataType:"text",parser:{
                     name: "pinterest",
                     resultsSelector:"$(data.responseText).find('a.PinImage:lt(|num|),div.pinBoard:lt(|num|)')",
                     heading: "Pinterest",
