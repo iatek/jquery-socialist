@@ -309,9 +309,9 @@
                     }},
                     pinterest:{url:'http://beta.in1.com/proxy?purl=http://pinterest.com/|id|/',img:'',dataType:"text",parser:{
                     name: "pinterest",
-                    resultsSelector:"$(data.responseText).find('a.PinImage:lt(|num|),div.pinBoard:lt(|num|)')",
+                    resultsSelector:"$(data.responseText).find('a.PinImage:lt(|num|),div.pinHolder:lt(|num|)')",
                     heading: "Pinterest",
-                    headingSelector: "helpers.stripHtml($elem.find('h3.serif').html())",
+                    headingSelector: "helpers.stripHtml($elem.find('h3.serif').html())||$elem.find('div.convo a').text()",
                     txtSelector: "$elem.find('img').attr('alt')",
                     imgSrcSelector: "$elem.find('img.PinImageImg').attr('src')||$elem.find('span.cover img').attr('src')",
                     imgSrcProcessor: null,
