@@ -176,9 +176,9 @@
                 var $headDiv = $('<div class="head"/>'),
                     $source = $('<div class="source"></div>'),
                     $sourceLnk = $('<a href="'+itemObj.img.href+'" title="'+itemObj.link.title+'"></a>'),
-                    $sourceLnkDiv = $('<div/>');
-                    $apiSpan = $('<span class="api">'+itemObj.api+'</span>'),
-                    
+                    $sourceLnkDiv = $('<div/>'),
+                    path = "https://c9.io/skelly/jquery-socialist/workspace/images/",
+                    $apiSpan = $('<span class="api"><img width=16 height=16 src="'+path+itemObj.api+'-16x16.png" title='+itemObj.api+'/></span>'),
                     $contentDiv = $('<div class="content"/>'),
                     $imgLnk = $('<a href="'+itemObj.img.href+'" title="'+itemObj.link.title+'"></a>'),
                     $img = $('<image src="'+itemObj.img.src+'" alt="'+itemObj.img.alt+'">'),
