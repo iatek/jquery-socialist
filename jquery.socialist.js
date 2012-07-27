@@ -52,10 +52,10 @@
                                 $element.isotope ({
                                      animationEngine: 'jquery'
                                 });
-                                if (settings.random){
-                                   $element.isotope('shuffle',function(){});
-                                }
-                            });
+                                //if (settings.random){
+                                   
+                                //}
+                            },function(){console.log('done')});
                         }
                     },function(){
                         console.log('some requests failed.');
