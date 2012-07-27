@@ -26,15 +26,15 @@
                     
                     // loop each network
                     networks.forEach(function(item) {
-                        //get network settings
+                        // get network settings
                         var nw = helpers.networkDefs[item.name];
                         nw.cb=function(newElement){queue.push(newElement)};
                         var reqUrl = nw.url;
-                        //replace params in request url
+                        // replace params in request url
                         reqUrl = reqUrl.replace("|id|",item.id);
                         reqUrl = reqUrl.replace("|areaName|",item.areaName);
                         reqUrl = reqUrl.replace("|num|",settings.maxResults);
-                        //add to array for processing
+                        // add to array for processing
                         processList.push(helpers.doRequest(reqUrl,nw.dataType,nw.cb,nw.parser,settings));
                     });
                     
@@ -44,22 +44,21 @@
                         for (var i = 0; i < queue.length; i++) {
                            queue[i].children().appendTo($element);
                         }
-                      
-                        var sortParam = '';
-                        if (settings.random){sortParam='random'}
                         
                         // load isotope?
                         if (settings.isotope) {
                             $element.imagesLoaded(function(){
                                 //console.log("loading iso");
                                 $element.isotope ({
-                                    transformsEnabled: false,
-                                    sortBy : sortParam
-                                })
+                                     animationEngine: 'jquery'
+                                });
+                                if (settings.random){
+                                   $element.isotope('shuffle',function(){});
+                                }
                             });
                         }
                     },function(){
-                        console.log('some requests failed.')
+                        console.log('some requests failed.');
                     });
                     
                 }); // end plugin instance
@@ -86,7 +85,8 @@
                         date;
                     
                     try{
-                        // eval is evil, but we use it here to evaluate string from our parser
+                        
+                        // eval is evil, but we use it here as a simple way to evaluate strings in our parser
                         if (eval(apiParser.preCondition)) {
                             var $div = $('<div class="socialist"></div>');
                             $div.addClass('socialist-'+apiParser.name);
@@ -118,7 +118,7 @@
                                 if (imgSrc!==null && apiParser.imgSrcProcessor!==null){
                                     imgSrc=eval(apiParser.imgSrcProcessor);
                                 }
-                                else if (imgSrc==null) {
+                                else if (imgSrc===null) {
                                     imgSrc="";
                                 }
                             }
@@ -164,7 +164,7 @@
             doRequest: function(url,dataType,cb,parser,settings){
                 console.log("ajax: " + dataType + ":" + url);
                 return $.ajax({
-                    url: url, //encodeURIComponent(url);
+                    url: url, //encodeURIComponent(url)?;
                     type: "GET",
                     dataType: dataType,
                     success: function(data) {
@@ -216,16 +216,19 @@
                     if (fields.indexOf('source')!=-1){
                         $sourceLnk.text(itemObj.heading);
                         $sourceLnk.appendTo($sourceLnkDiv);                                                                                     
-                        $sourceLnkDiv.appendTo($source);                                                                                        
+                        $sourceLnkDiv.appendTo($source);
+                        $apiSpan.appendTo($source);
+                        $source.appendTo($footDiv);                                                                                        
                     }
                     
                     if (fields.indexOf('date')!=-1){
                         $dateSpan.text(itemObj.date);                            
                         $dateSpan.appendTo($source);
                     }
-                                                   
-                    $apiSpan.appendTo($source);
-                    $footDiv.appendTo(container);
+                    
+                    if (fields.indexOf('source')!=-1 || fields.indexOf('date')!=-1) {
+                        $footDiv.appendTo(container);
+                    }
                     
                     return container;
             },
@@ -412,19 +415,20 @@
             fixTwitterDate: function(created_at) {
                 var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
                 var pattern = /\s/;
+                var day_of_week,day,month_pos,month,year,time;
                 created_at = created_at.split(pattern);
-                for (i = 0, len = created_at.length; i < len; i++){
-                day_of_week = created_at[0];
-                day = created_at[2];
-                month_pos = created_at[1];
-                month = 0 + months.indexOf(month_pos) + 1; // add 1 because array starts from zero
-                year = created_at[5];
-                time = created_at[3];
+                for (var i = 0; i < created_at.length; i++){
+                    day_of_week = created_at[0];
+                    day = created_at[2];
+                    month_pos = created_at[1];
+                    month = 0 + months.indexOf(month_pos) + 1; // add 1 because array starts from zero
+                    year = created_at[5];
+                    time = created_at[3];
                 }
                 created_at = year+'-'+month+'-'+day+'T'+time+'Z';
                 
-                if(created_at != undefined)
-                return created_at;
+                if(created_at !== undefined)
+                    return created_at;
             }
         }
 
