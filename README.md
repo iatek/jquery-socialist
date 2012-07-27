@@ -1,14 +1,14 @@
-jquery-socialist
+jquery-socialist -  A jQuery social plugin for creating streams from social networks and feeds
 ================
 
 Even if you hate <a href='http://en.wikipedia.org/wiki/Socialism'>socialism</a>, you love this flexible jQuery social media plugin.
-jQuery Socialist is a plugin that lets you create a social stream or social "wall" from multiple social networks in one place.
+jQuery Socialist is a plugin that lets you create a social stream or social wall from multiple social networks in one place. Use it to:
 
 Features
 ================
-    - View updates from multiple social networks in responsive visual layouts
-    - Supports Facebook, Twitter, LinkedIn, Tumblr, Pinterest, RSS Feeds, Google+ and more..
-    
+    - Display updates from multiple social networks in attractive visual layouts
+    - Supports Facebook, Twitter, LinkedIn, YouTube, Tumblr, Pinterest, RSS Feeds, Craigslist, Google+ and more..    
+
 
 Usage
 ================
