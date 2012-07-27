@@ -19,45 +19,50 @@
                     queue = [],
                     processList = [];
                
+                // each instance of this plugin
                 return this.each(function() {
                     var $element = $(this),
                         element = this;
                     
+                    // loop each network
                     networks.forEach(function(item) {
                         //get network settings
-                        //console.log(item)
                         var nw = helpers.networkDefs[item.name];
                         nw.cb=function(newElement){queue.push(newElement)};
-                        reqUrl = nw.url;
+                        var reqUrl = nw.url;
+                        //replace params in request url
                         reqUrl = reqUrl.replace("|id|",item.id);
                         reqUrl = reqUrl.replace("|areaName|",item.areaName);
                         reqUrl = reqUrl.replace("|num|",settings.maxResults);
-                                                           processList.push(helpers.doRequest(reqUrl,nw.dataType,nw.cb,nw.parser,settings));
-
-                        $.when.apply($, processList).then(function(){
-                                
-                            for (var i = 0; i < queue.length; i++) {
-                               queue[i].children().appendTo($element);
-                            }
-                          
-                            sortParam = '';
-                            if (settings.random){sortParam='random'};
-                            
-                            // where done with ajax - load isotope?
-                            if (settings.isotope) {
-                                $element.imagesLoaded(function(){                                  //
-                                    console.log("loading iso");
-                                    $element.isotope ({
-                                        transformsEnabled: false,
-                                        sortBy : sortParam
-                                    })
-                                });
-                            }
-                        },function(){
-                            console.log('some requests failed.')
-                        });
+                        //add to array for processing
+                        processList.push(helpers.doRequest(reqUrl,nw.dataType,nw.cb,nw.parser,settings));
                     });
-                });
+                    
+                    // process the array of requests, then add resulting elements to container element
+                    $.when.apply($, processList).then(function(){
+                                
+                        for (var i = 0; i < queue.length; i++) {
+                           queue[i].children().appendTo($element);
+                        }
+                      
+                        var sortParam = '';
+                        if (settings.random){sortParam='random'}
+                        
+                        // load isotope?
+                        if (settings.isotope) {
+                            $element.imagesLoaded(function(){
+                                //console.log("loading iso");
+                                $element.isotope ({
+                                    transformsEnabled: false,
+                                    sortBy : sortParam
+                                })
+                            });
+                        }
+                    },function(){
+                        console.log('some requests failed.')
+                    });
+                    
+                }); // end plugin instance
             }
         }
 
@@ -71,16 +76,22 @@
                     
                 $.each(eval(apiParser.resultsSelector), function(i,item) {
 
-                    var $elem = $(item);
+                    var $elem = $(item),
+                        heading,
+                        txt,
+                        linkHref,
+                        imgSrc,
+                        imgHref,
+                        imgAlt,
+                        date;
                     
                     try{
-                    
+                        // eval is evil, but we use it here to evaluate string from our parser
                         if (eval(apiParser.preCondition)) {
                             var $div = $('<div class="socialist"></div>');
-                            
                             $div.addClass('socialist-'+apiParser.name);
                                             
-                            if (apiParser.headingSelector!=null){
+                            if (apiParser.headingSelector!==null){
                                 heading = helpers.shorten(helpers.stripHtml(eval(apiParser.headingSelector)),settings.headingLength);
                             }
                             else {
@@ -88,7 +99,7 @@
                             }
                             
                             txt=eval(apiParser.txtSelector);
-                            if (txt!=null) {
+                            if (txt!==null) {
                                 txt = helpers.shorten(txt,settings.textLength);
                             }
                             else {
@@ -99,12 +110,12 @@
                             linkHref="#";
                             
                             // image src
-                            if (apiParser.imgSrcSelector==null){
+                            if (apiParser.imgSrcSelector===null){
                                 imgSrc=apiParser.imgSrc;
                             }
                             else {
                                 imgSrc=eval(apiParser.imgSrcSelector);
-                                if (imgSrc!=null && apiParser.imgSrcProcessor!=null){
+                                if (imgSrc!==null && apiParser.imgSrcProcessor!==null){
                                     imgSrc=eval(apiParser.imgSrcProcessor);
                                 }
                                 else if (imgSrc==null) {
@@ -113,7 +124,7 @@
                             }
                             
                             // image link
-                            if (apiParser.imgHrefSelector==null){
+                            if (apiParser.imgHrefSelector===null){
                                 imgHref=apiParser.imgHref;
                             }
                             else {
@@ -121,12 +132,12 @@
                             }
     
                             // image alt
-                            if (apiParser.imgAltSelector!=null){
+                            if (apiParser.imgAltSelector!==null){
                                 imgAlt=eval(apiParser.imgAltSelector);
                             }
                            
                             date=eval(apiParser.dateSelector);
-                            if (typeof date=="undefined" || date===null) {
+                            if (typeof date==="undefined" || date===null) {
                                 date = "";
                             }
                             
@@ -148,12 +159,10 @@
                        console.log("parse error:"+apiParser.name+":"+e)
                     }
                 }); // end each
-
-               return container;
+                return container;
             },
             doRequest: function(url,dataType,cb,parser,settings){
                 console.log("ajax: " + dataType + ":" + url);
-        
                 return $.ajax({
                     url: url, //encodeURIComponent(url);
                     type: "GET",
@@ -203,7 +212,6 @@
                         $shareDiv.appendTo(container);
                     }
                     
-                    
                     $source.appendTo($footDiv);
                     if (fields.indexOf('source')!=-1){
                         $sourceLnk.text(itemObj.heading);
@@ -233,7 +241,7 @@
                     imgSrcSelector: "$(item.content).find(\"img:lt(1)\").attr('src')",
                     imgSrcProcessor: null,
                     imgHref: "",
-                    imgHrefSelector: "$(item.content).find(\"img:lt(1)\").parent().attr('href')",
+                    imgHrefSelector: "$(item.content).find(\"img:lt(1)\").parent().attr('href')||$(item.content).find(\"a:lt(1)\").attr('href')",
                     imgAltSelector: "item.contentSnippet",
                     link: "",
                     linkSelector: null,
@@ -299,19 +307,20 @@
                     imgSrcSelector: "$elem.find('a.Mn img').attr('src')",                    
                     imgSrcProcessor: null,
                     imgHrefSelector: "$elem.find('a.YF').attr('href')",
-                    imgAltSelector: "$elem.find('a.Mn img').attr('alt')",
+                    imgAltSelector: "($elem.find('a.Mn img').attr('alt'))||'Google'",
                     dateSelector: "$elem.parents('div.qf').find('a.Bf').text()",
                     link: "#",
                     preProcessor: null,
-                    preCondition: "true"}},
-                instagram:{url:'',dataType:'json',img:{},parser:{
-                                 
-                    }},
-                    pinterest:{url:'http://beta.in1.com/proxy?purl=http://pinterest.com/|id|/',img:'',dataType:"text",parser:{
+                    preCondition: "true"}
+                },
+                instagram:{url:'',dataType:'json',img:{},parser:{                 
+                    }
+                },
+                pinterest:{url:'http://pinterest.com/|id|/',img:'',dataType:"text",parser:{
                     name: "pinterest",
-                    resultsSelector:"$(data.responseText).find('a.PinImage:lt(|num|),div.pinHolder:lt(|num|)')",
+                    resultsSelector:"$(data.responseText).find('a.PinImage:lt(|num|),div.pin:lt(|num|)')",
                     heading: "Pinterest",
-                    headingSelector: "helpers.stripHtml($elem.find('h3.serif').html())||$elem.find('div.convo a').text()",
+                    headingSelector: "$elem.find('p.NoImage a').text()",
                     txtSelector: "$elem.find('img').attr('alt')",
                     imgSrcSelector: "$elem.find('img.PinImageImg').attr('src')||$elem.find('span.cover img').attr('src')",
                     imgSrcProcessor: null,
@@ -319,7 +328,8 @@
                     imgAltSelector: "$elem.find('img').attr('alt')",
                     link: "#",
                     preProcessor: null,
-                    preCondition: "true"}
+                    preCondition: "true"
+                    }
                },
                craigslist:{url:"http://|areaName|.craigslist.org/|id|",dataType:"text",parser:{
                     name: "craigslist",
@@ -328,7 +338,7 @@
                     headingSelector: "helpers.fixCase($elem.find('a,font').text())",
                     txtSelector: "",
                     imgSrcSelector: "\"http://images.craigslist.org/\"+$elem.find(\"span.ih[id]\").attr('id')",
-                    imgSrcProcessor: "imgSrc.replace(\"images:\",\"\")",
+                    imgSrcProcessor: "imgSrc.replace('images:',\"\")",
                     imgHrefSelector: "$elem.find('a').attr('href')",
                     imgAltSelector: "helpers.fixCase($elem.find(\"a,font\").text())",
                     link: "#",
