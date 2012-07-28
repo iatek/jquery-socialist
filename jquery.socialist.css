@@ -21,19 +21,19 @@
 }
 
 .socialist .content div {
-    padding:6px;
-    padding-top:2px;
+    padding:3px;
+    padding-top:0px;
 }
 
 .socialist .content img {
-    width: 170px;
-    margin:5px;
+    width: 174px;
+    margin:4px;
     border:1px solid #ddd;
 }
 
 .socialist .foot {
     color:#fff;
-    padding:5px;
+    padding:6px;
     background-color:#888;
     height:34px;
     *position:absolute;

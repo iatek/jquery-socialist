@@ -318,14 +318,14 @@
                 tumblr:{url:'http://iatek.tumblr.com/api/read/json?callback=helpers.cb',dataType:"jsonp",parser:{
                     name: "tumblr",
                     resultsSelector: "data.posts",
-                    heading: "tumblrr",
-                    headingSelector: "(item['photo-caption'])||item['regular-title']",
+                    heading: "tumblr",
+                    headingSelector: "data.tumblelog.title",
                     txtSelector: "(helpers.stripHtml(item['regular-body']))||(item['regular-title'])||item['photo-caption']",
-                    dateSelector: null,
+                    dateSelector: "item.date",
                     imgSrcSelector: "item['photo-url-250']",
                     imgSrcProcessor: null,
                     imgHrefSelector: "item.url",
-                    imgAltSelector: "item['regular-title']||item.tags.toString()",
+                    imgAltSelector: "item['regular-title']||(item.tags)||item['photo-caption']",
                     link: "#",
                     preProcessor: null,
                     preCondition: "true"}
@@ -365,7 +365,7 @@
                     preCondition: "true"
                     }
                },
-               quora:{url:'http://beta.in1.com/proxy?purl=http://www.quora.com/|id|/feed/',img:'',dataType:"text",parser:{
+               quora:{url:'http://www.quora.com/|id|/feed/',img:'',dataType:"text",parser:{
                     name: "quora",
                     resultsSelector:"$(data.responseText).find('div.feed_item:lt(|num|)')",
                     heading: "Quora",
