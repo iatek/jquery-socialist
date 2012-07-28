@@ -52,14 +52,17 @@
                                 $element.isotope ({
                                      animationEngine: 'jquery'
                                 });
-                                //if (settings.random){
-                                   
-                                //}
-                            },function(){console.log('done')});
+                                
+                                if (settings.random){
+                                    $element.isotope( 'shuffle', function(){} );
+                                }
+                            });
                         }
                     },function(){
                         console.log('some requests failed.');
                     });
+                    
+                    //$element.isotope('shuffle',function(){})
                     
                 }); // end plugin instance
             }
@@ -268,6 +271,20 @@
                     preProcessor: null,
                     preCondition: "true"}
                 },
+                youtube:{url:'https://gdata.youtube.com/feeds/api/users/|id|/uploads?alt=json',dataType:"json",img:'',parser:{
+                    name: "youtube",
+                    resultsSelector: "data.feed.entry",
+                    heading: "YouTube",
+                    headingSelector: "item.title.$t",
+                    txtSelector: "item.content.$t",
+                    dateSelector: "helpers.timeAgo(item.updated.$t)",
+                    imgSrcSelector: "item.media$group.media$thumbnail[0].url",
+                    imgSrcProcessor: null,
+                    imgHrefSelector: "item.link[0].href",
+                    imgAltSelector: "",
+                    preProcessor: null,
+                    preCondition: "true"}
+                },
                 twitter:{url:'https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=false&screen_name=|id|&count=|num|',dataType:"jsonp",img:'',parser:{
                     name: "twitter",
                     resultsSelector: "data",
@@ -298,8 +315,22 @@
                     preProcessor: null,
                     preCondition: "true"}
                 },
+                tumblr:{url:'http://iatek.tumblr.com/api/read/json?callback=helpers.cb',dataType:"jsonp",parser:{
+                    name: "tumblr",
+                    resultsSelector: "data.posts",
+                    heading: "tumblrr",
+                    headingSelector: "(item['photo-caption'])||item['regular-title']",
+                    txtSelector: "(helpers.stripHtml(item['regular-body']))||(item['regular-title'])||item['photo-caption']",
+                    dateSelector: null,
+                    imgSrcSelector: "item['photo-url-250']",
+                    imgSrcProcessor: null,
+                    imgHrefSelector: "item.url",
+                    imgAltSelector: "item['regular-title']||item.tags.toString()",
+                    link: "#",
+                    preProcessor: null,
+                    preCondition: "true"}
                 
-                tumblr:{url:'http://www.tumblr.com/',img:''},
+                },
                 digg:{url:'http://digg.com/',img:''},
                 googleplus:{url:'https://plus.google.com/|id|',img:'',dataType:'text',parser:{
                     name: "google",
@@ -334,20 +365,37 @@
                     preCondition: "true"
                     }
                },
+               quora:{url:'http://beta.in1.com/proxy?purl=http://www.quora.com/|id|/feed/',img:'',dataType:"text",parser:{
+                    name: "quora",
+                    resultsSelector:"$(data.responseText).find('div.feed_item:lt(|num|)')",
+                    heading: "Quora",
+                    headingSelector: "$elem.find('a.question_link:first').text()",
+                    txtSelector: "($elem.find('div.inline truncated_q_text:first-child').text())",                    imgSrcSelector: "",                    
+                    imgSrcProcessor: null,
+                    imgHrefSelector: "$elem.find('a').attr('href')",
+                    imgAltSelector: "$elem.find('a').text()",
+                    dateSelector: "$elem.find('span.timestamp').text()",
+                    link: "#",
+                    preProcessor: null,
+                    preCondition: "true"}
+               },
                craigslist:{url:"http://|areaName|.craigslist.org/|id|",dataType:"text",parser:{
                     name: "craigslist",
                     resultsSelector:"$(data.responseText).find(\"p.row:contains('pic'):lt(|num|)\")",
-                    heading: "Craigs",
-                    headingSelector: "helpers.fixCase($elem.find('a,font').text())",
-                    txtSelector: "",
+                    heading: "Craigslist",
+                    headingSelector: null,
+                    txtSelector: "helpers.fixCase($elem.find('a,font').text())",
                     imgSrcSelector: "\"http://images.craigslist.org/\"+$elem.find(\"span.ih[id]\").attr('id')",
                     imgSrcProcessor: "imgSrc.replace('images:',\"\")",
                     imgHrefSelector: "$elem.find('a').attr('href')",
-                    imgAltSelector: "helpers.fixCase($elem.find(\"a,font\").text())",
+                    imgAltSelector: "$elem.find('span.itempp').text()",
                     link: "#",
                     preProcessor: null,
                     preCondition: "true"}
                 }
+            },
+            cb:function(jsonStr) {
+                return jsonStr;
             },
             fixCase:function(string)
             {
@@ -446,8 +494,8 @@
         networks: [{name:'linkedin',id:'iatek-llc'},{name:'pinterest',id:'carolskelly/in1-com'},{name:'twitter',id:'in1dotcom'}],
         random: true,
         isotope: true,
-        headingLength: 34,
-        textLength: 200,
+        headingLength: 31,
+        textLength: 170,
         maxResults:7,
         fields:['source','heading','text','date','image','followers','likes','share']
     }
