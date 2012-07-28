@@ -72,7 +72,7 @@
             parseResults: function(apiParser,data,settings) {
                 
                 var container=$('<div></div>');
-                console.log(JSON.stringify(data));
+                //console.log(JSON.stringify(data));
                                                    
                 apiParser.resultsSelector = apiParser.resultsSelector.replace('|num|',settings.maxResults);             
                     
@@ -93,6 +93,10 @@
                         if (eval(apiParser.preCondition)) {
                             var $div = $('<div class="socialist"></div>');
                             $div.addClass('socialist-'+apiParser.name);
+                            
+                            if (settings.theme) {
+                                 $div.addClass('socialist-'+settings.theme);   
+                            }
                             
                             //console.log(item);
                                             
@@ -191,21 +195,23 @@
                     $source = $('<div class="source"></div>'),
                     $sourceLnk = $('<a href="'+itemObj.img.href+'" title="'+itemObj.link.title+'"></a>'),
                     $sourceLnkDiv = $('<div/>'),
-                    //$apiSpan = $('<span class="api"><a href="'+itemObj.img.href+'"><img src="'+path+itemObj.api+'-16x16.png" title="'+itemObj.api+'"></a></span>'),
-                    $apiSpan = $('<span class="api"><a href="'+itemObj.img.href+'"><img src="../images/spacer.gif" title="'+itemObj.api+'"></a></span>'),
+                    $apiSpan = $('<div class="api"></div>'),
+                    $apiSpanLnk = $('<a href="'+itemObj.img.href+'"><img src="https://c9.io/skelly/jquery-socialist/workspace/images/spacer.gif"></a>'),
                     $contentDiv = $('<div class="content"/>'),
                     $imgLnk = $('<a href="'+itemObj.img.href+'" title="'+itemObj.link.title+'"></a>'),
                     $img = $('<image src="'+itemObj.img.src+'" alt="'+helpers.stripHtml(itemObj.img.alt)+'">'),
                     $shareDiv = $('<div class="share"><a href="#" title='+itemObj.api+'>fb</a>|<a href="#" class="x">tw</a></div>'),
-                    $dateSpan = $('<span class="date"/>'),
+                    $dateSpan = $('<div class="date"/>'),
                     $footDiv = $('<div class="foot"/>');
+                    
+                    console.log(itemObj.img.src);
 
                     if (fields.indexOf('image')!=-1 && itemObj.img.src){                                   
                         $img.appendTo($imgLnk);
                         $imgLnk.appendTo($contentDiv);
                     }
                     
-                    if (fields.indexOf('text')!=-1){
+                    if (fields.indexOf('text')!=-1 || typeof itemObj.img.src==="undefined" ){
                         $('<div>'+itemObj.txt+'</div>').appendTo($contentDiv);
                     }
                     
@@ -222,13 +228,15 @@
                         $sourceLnk.text(itemObj.heading);
                         $sourceLnk.appendTo($sourceLnkDiv);                                                                                     
                         $sourceLnkDiv.appendTo($source);
-                        $apiSpan.appendTo($source);
+                        $apiSpanLnk.appendTo($apiSpan);
+                        $apiSpan.appendTo($footDiv);
                         $source.appendTo($footDiv);                                                                                        
                     }
                     
                     if (fields.indexOf('date')!=-1){
                         $dateSpan.text(itemObj.date);                            
-                        $dateSpan.appendTo($source);
+                        //$dateSpan.appendTo($source);
+                        $dateSpan.appendTo($sourceLnkDiv);
                     }
                     
                     if (fields.indexOf('source')!=-1 || fields.indexOf('date')!=-1) {
@@ -321,7 +329,7 @@
                     name: "tumblr",
                     resultsSelector: "data.posts",
                     heading: "tumblr",
-                    headingSelector: "data.tumblelog.title",
+                    headingSelector: "(item['photo-caption'])||data.tumblelog.title",
                     txtSelector: "(helpers.stripHtml(item['regular-body']))||(item['regular-title'])||item['photo-caption']",
                     dateSelector: "item.date",
                     imgSrcSelector: "item['photo-url-250']",
@@ -360,7 +368,7 @@
                     txtSelector: "($elem.find('img').attr('alt'))||$elem.find('.serif a').text()",
                     imgSrcSelector: "($elem.find('img.PinImageImg').attr('src'))||$elem.find('span.cover img').attr('src')",
                     imgSrcProcessor: null,
-                    imgHrefSelector: "\"http://pinterest.com\"+($elem.attr('href'))||$elem.find('a').attr('href')",
+                    imgHrefSelector: "\"http://pinterest.com/pin/\"+($elem.attr('data-id'))||$elem.find('a').attr('href')",
                     imgAltSelector: "($elem.find('img').attr('alt'))||'Pinterest'",
                     link: "#",
                     preProcessor: null,
