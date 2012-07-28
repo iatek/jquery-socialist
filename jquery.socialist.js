@@ -94,8 +94,16 @@
                             var $div = $('<div class="socialist"></div>');
                             $div.addClass('socialist-'+apiParser.name);
                             
+                            if (settings.fixed) {
+                                 $div.addClass('socialist-fixed');   
+                            }
+                            
                             if (settings.theme) {
                                  $div.addClass('socialist-'+settings.theme);   
+                            }
+                            
+                            if (settings.size) {
+                                 $div.addClass('socialist-'+settings.size);   
                             }
                             
                             //console.log(item);
@@ -364,11 +372,11 @@
                     name: "pinterest",
                     resultsSelector:"$(data.responseText).find('div.pin:lt(|num|),a.PinImage:lt(|num|)')",
                     heading: "Pinterest",
-                    headingSelector: "$elem.find('p.NoImage a').text()",
+                    headingSelector: "($elem.find('p.NoImage a').text())||$elem.find('.serif a').text()",
                     txtSelector: "($elem.find('img').attr('alt'))||$elem.find('.serif a').text()",
                     imgSrcSelector: "($elem.find('img.PinImageImg').attr('src'))||$elem.find('span.cover img').attr('src')",
                     imgSrcProcessor: null,
-                    imgHrefSelector: "\"http://pinterest.com/pin/\"+($elem.attr('data-id'))||$elem.find('a').attr('href')",
+                    imgHrefSelector: "\"http://pinterest.com\"+(($elem.find('a.link').attr('href'))||$elem.find('a.PinImage').attr('href'))",
                     imgAltSelector: "($elem.find('img').attr('alt'))||'Pinterest'",
                     link: "#",
                     preProcessor: null,

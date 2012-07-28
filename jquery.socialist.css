@@ -2,7 +2,7 @@
     font-family:arial;
 }
 .socialist {
-    box-shadow: #999 1px 1px 1px 0px;
+    box-shadow:#999 1px 1px 1px 0px;
     *border:1px solid #333;
     background-color: #fefefe;
     color:#666;
@@ -161,6 +161,12 @@
 .socialist-large .socialist-fixed {
     height:300px;
 }
+.socialist-large .socialist-fixed .content img {
+    max-width:300px !important;
+}
+.socialist-large .socialist-clean .content img {
+    min-width:300px;
+}
 
 /* small */
 .socialist-small {
@@ -200,10 +206,14 @@
 }
 .socialist-fixed .content img {
     max-width:120px;
-    max-height:100px;
+   *max-height:100px;
 }
 
 /* clean */
+.socialist-clean {
+    box-shadow:#aaa 2px 2px 0px 0px;
+}
+
 .socialist-clean .content {
     border-width:0px;
 }
