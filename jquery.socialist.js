@@ -72,12 +72,12 @@
             parseResults: function(apiParser,data,settings) {
                 
                 var container=$('<div></div>');
-                //console.log(JSON.stringify(data));
+                console.log(JSON.stringify(data));
                                                    
                 apiParser.resultsSelector = apiParser.resultsSelector.replace('|num|',settings.maxResults);             
                     
                 $.each(eval(apiParser.resultsSelector), function(i,item) {
-
+                    
                     var $elem = $(item),
                         heading,
                         txt,
@@ -93,6 +93,8 @@
                         if (eval(apiParser.preCondition)) {
                             var $div = $('<div class="socialist"></div>');
                             $div.addClass('socialist-'+apiParser.name);
+                            
+                            //console.log(item);
                                             
                             if (apiParser.headingSelector!==null){
                                 heading = helpers.shorten(helpers.stripHtml(eval(apiParser.headingSelector)),settings.headingLength);
@@ -189,11 +191,11 @@
                     $source = $('<div class="source"></div>'),
                     $sourceLnk = $('<a href="'+itemObj.img.href+'" title="'+itemObj.link.title+'"></a>'),
                     $sourceLnkDiv = $('<div/>'),
-                    path = "https://c9.io/skelly/jquery-socialist/workspace/images/",
-                    $apiSpan = $('<span class="api"><img width=16 height=16 src="'+path+itemObj.api+'-16x16.png" title="'+itemObj.api+'"></span>'),
+                    //$apiSpan = $('<span class="api"><a href="'+itemObj.img.href+'"><img src="'+path+itemObj.api+'-16x16.png" title="'+itemObj.api+'"></a></span>'),
+                    $apiSpan = $('<span class="api"><a href="'+itemObj.img.href+'"><img src="../images/spacer.gif" title="'+itemObj.api+'"></a></span>'),
                     $contentDiv = $('<div class="content"/>'),
                     $imgLnk = $('<a href="'+itemObj.img.href+'" title="'+itemObj.link.title+'"></a>'),
-                    $img = $('<image src="'+itemObj.img.src+'" alt="'+itemObj.img.alt+'">'),
+                    $img = $('<image src="'+itemObj.img.src+'" alt="'+helpers.stripHtml(itemObj.img.alt)+'">'),
                     $shareDiv = $('<div class="share"><a href="#" title='+itemObj.api+'>fb</a>|<a href="#" class="x">tw</a></div>'),
                     $dateSpan = $('<span class="date"/>'),
                     $footDiv = $('<div class="foot"/>');
@@ -281,7 +283,7 @@
                     imgSrcSelector: "item.media$group.media$thumbnail[0].url",
                     imgSrcProcessor: null,
                     imgHrefSelector: "item.link[0].href",
-                    imgAltSelector: "",
+                    imgAltSelector: "item.title.$t",
                     preProcessor: null,
                     preCondition: "true"}
                 },
@@ -325,7 +327,7 @@
                     imgSrcSelector: "item['photo-url-250']",
                     imgSrcProcessor: null,
                     imgHrefSelector: "item.url",
-                    imgAltSelector: "item['regular-title']||(item.tags)||item['photo-caption']",
+                    imgAltSelector: "(item['regular-title'])||item.tags.toString()",
                     link: "#",
                     preProcessor: null,
                     preCondition: "true"}
@@ -350,22 +352,22 @@
                 instagram:{url:'',dataType:'json',img:{},parser:{                 
                     }
                 },
-                pinterest:{url:'http://pinterest.com/|id|/',img:'',dataType:"text",parser:{
+                pinterest:{url:'http://pinterest.com/|id|/',dataType:"text",parser:{
                     name: "pinterest",
-                    resultsSelector:"$(data.responseText).find('a.PinImage:lt(|num|),div.pin:lt(|num|)')",
+                    resultsSelector:"$(data.responseText).find('div.pin:lt(|num|),a.PinImage:lt(|num|)')",
                     heading: "Pinterest",
                     headingSelector: "$elem.find('p.NoImage a').text()",
-                    txtSelector: "$elem.find('img').attr('alt')",
-                    imgSrcSelector: "$elem.find('img.PinImageImg').attr('src')||$elem.find('span.cover img').attr('src')",
+                    txtSelector: "($elem.find('img').attr('alt'))||$elem.find('.serif a').text()",
+                    imgSrcSelector: "($elem.find('img.PinImageImg').attr('src'))||$elem.find('span.cover img').attr('src')",
                     imgSrcProcessor: null,
-                    imgHrefSelector: "\"http://pinterest.com\"+($elem.attr('href')||$elem.find('a').attr('href'))",
-                    imgAltSelector: "$elem.find('img').attr('alt')",
+                    imgHrefSelector: "\"http://pinterest.com\"+($elem.attr('href'))||$elem.find('a').attr('href')",
+                    imgAltSelector: "($elem.find('img').attr('alt'))||'Pinterest'",
                     link: "#",
                     preProcessor: null,
                     preCondition: "true"
                     }
                },
-               quora:{url:'http://www.quora.com/|id|/feed/',img:'',dataType:"text",parser:{
+               quora:{url:'http://www.quora.com/|id|/feed/',dataType:"text",parser:{
                     name: "quora",
                     resultsSelector:"$(data.responseText).find('div.feed_item:lt(|num|)')",
                     heading: "Quora",
@@ -400,14 +402,14 @@
             },
             fixCase:function(string)
             {
-                if (string==null)
+                if (string===null)
                     return;
                 
                 return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
             },
             shorten:function(string,length)
             {
-                if (string==null)
+                if (typeof string==="undefined" || string===null)
                     return;
             
                 if (string.length > length)
@@ -417,7 +419,7 @@
             },
             stripHtml:function(w)
             {
-                if (w==null)
+                if (typeof w==="undefined" || w===null)
                     return;
             
                 return w.replace(/(<([^>]+)>)|nbsp;|\s{2,}|/ig,"");

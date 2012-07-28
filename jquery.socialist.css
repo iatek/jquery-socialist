@@ -52,6 +52,8 @@
 
 .socialist .api {
     float:right;
+    height:16px;
+    width:16px;
 }  
 
 .socialist span.date {
