@@ -24,6 +24,7 @@
 .socialist .content div {
     padding:3px;
     padding-top:0px;
+    color:#999;
 }
 
 .socialist .content img {
@@ -108,9 +109,9 @@
 }
 
 .socialist-twitter .content  img {
-    width:50px !important;
-    max-width:50px !important;
-    min-width:50px !important;
+    width:60px !important;
+    max-width:60px !important;
+    min-width:60px !important;
     float:left;
 }
 .socialist-twitter .foot {
@@ -223,7 +224,7 @@
     border:0px;
 }
 .socialist-clean .content div {
-    padding:5px;
+    padding:6px;
 }
 .socialist-clean .foot {
     background-color:#fff !important;

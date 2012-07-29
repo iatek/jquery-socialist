@@ -514,7 +514,7 @@
         random: true,
         isotope: true,
         headingLength: 31,
-        textLength: 170,
+        textLength: 160,
         maxResults:7,
         fields:['source','heading','text','date','image','followers','likes','share']
     }
