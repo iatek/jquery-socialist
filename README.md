@@ -37,19 +37,19 @@ Usage
         ],
         isotope:false,
         random:false,
-        fields:['source','heading','text','date','image','followers','likes']
+        fields:['source','heading','text','date','image']
     });
 
 Examples
 =========
 
-    - <a href='http://plugins.in1.com/socialist'>Display Instagram photos in Pinterest-style layouts</a>
-    - <a href='http://plugins.in1.com/socialist'>Combine and display Facebook, Twitter and LinkedIn updates</a>
-    - <a href='http://plugins.in1.com/socialist'>Show YouTube video thumbnails</a>
-    - <a href='http://plugins.in1.com/socialist'>Display Craiglist postings for an area and category</a>
-    - <a href='http://plugins.in1.com/socialist'>Visualize any RSS feed as a responsive social wall</a>
+    <a href='http://plugins.in1.com/socialist/demo'>Display Instagram photos in Pinterest-style layouts</a>
+    <a href='http://plugins.in1.com/socialist/demo'>Combine and display Facebook, Twitter and LinkedIn updates</a>
+    <a href='http://plugins.in1.com/socialist/demo'>Show YouTube video thumbnails</a>
+    <a href='http://plugins.in1.com/socialist/demo'>Display Craiglist postings for an area and category</a>
+    <a href='http://plugins.in1.com/socialist/demo'>Visualize any RSS feed as a responsive social wall</a>
     
-    More Demos...
+    <a href='http://plugins.in1.com/socialist/demo'>Click Here for More Demos</a>
 
 Dependencies
 ================
