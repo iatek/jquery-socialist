@@ -14,7 +14,8 @@ Examples
     [Visualize any RSS feed as a responsive social wall][1]
     
     [Click Here for More Demos][2]
-
+    [1]: http://plugins.in1.com/socialist/demo
+    [2]: http://plugins.in1.com/socialist/
 
 Features
 
@@ -60,6 +61,3 @@ Dependencies
     - jQuery Isotope Plugin v1.5.19: An exquisite jQuery plugin for magical layouts (http://isotope.metafizzy.co)
     - jQuery Cross Domain Ajax: http://james.padolsey.com/javascript/cross-domain-requests-with-jquery/
     
-
-[1]: http://plugins.in1.com/socialist/demo
-[2]: http://plugins.in1.com/socialist/
