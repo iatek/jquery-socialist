@@ -48,7 +48,7 @@ Examples
     [Display Craiglist postings for an area and category][1]
     [Visualize any RSS feed as a responsive social wall][1]
     
-    <a href='http://plugins.in1.com/socialist/demo'>Click Here for More Demos</a>
+    [Click Here for More Demos][2]
 
 Dependencies
 ================
@@ -59,4 +59,5 @@ Dependencies
     - jQuery Cross Domain Ajax: http://james.padolsey.com/javascript/cross-domain-requests-with-jquery/
     
 
-[1]: http://plugins.in1.com/socialist/demo    
+[1]: http://plugins.in1.com/socialist/demo
+[2]: http://plugins.in1.com/socialist/
