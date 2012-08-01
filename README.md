@@ -41,13 +41,12 @@ Usage
     });
 
 Examples
-=========
 
     [Display Instagram photos in Pinterest-style layouts][1]
-    <a href='http://plugins.in1.com/socialist/demo'>Combine and display Facebook, Twitter and LinkedIn updates</a>
-    <a href='http://plugins.in1.com/socialist/demo'>Show YouTube video thumbnails</a>
-    <a href='http://plugins.in1.com/socialist/demo'>Display Craiglist postings for an area and category</a>
-    <a href='http://plugins.in1.com/socialist/demo'>Visualize any RSS feed as a responsive social wall</a>
+    [Combine and display Facebook, Twitter and LinkedIn updates][1]
+    [Show YouTube video thumbnails][1]
+    [Display Craiglist postings for an area and category][1]
+    [Visualize any RSS feed as a responsive social wall][1]
     
     <a href='http://plugins.in1.com/socialist/demo'>Click Here for More Demos</a>
 
