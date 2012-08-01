@@ -254,7 +254,7 @@
                     return container;
             },
             networkDefs: {
-                rss:{url:"http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=7&callback=?&q=|id|",dataType:"json",parser:{
+                rss:{url:"http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=|num|&callback=?&q=|id|",dataType:"json",parser:{
                     name: "rss",
                     resultsSelector: "data.responseData.feed.entries",
                     heading: "RSS",
@@ -274,7 +274,7 @@
                     preCondition: "$(item.content).find(\"img[src]:contains('http')\")"
                     }
                 },
-                facebook:{url:'http://graph.facebook.com/|id|/photos',img:'',dataType:'json',parser:{
+                facebook:{url:'http://graph.facebook.com/|id|/photos?limit=|num|',img:'',dataType:'json',parser:{
                     name: "facebook",
                     resultsSelector: "data.data",
                     heading: "Facebook",
@@ -289,7 +289,7 @@
                     preProcessor: null,
                     preCondition: "true"}
                 },
-                youtube:{url:'https://gdata.youtube.com/feeds/api/users/|id|/uploads?alt=json',dataType:"json",img:'',parser:{
+                youtube:{url:'https://gdata.youtube.com/feeds/api/users/|id|/uploads?alt=json&max-results=|num|',dataType:"json",img:'',parser:{
                     name: "youtube",
                     resultsSelector: "data.feed.entry",
                     heading: "YouTube",
@@ -333,7 +333,7 @@
                     preProcessor: null,
                     preCondition: "true"}
                 },
-                tumblr:{url:'http://iatek.tumblr.com/api/read/json?callback=helpers.cb',dataType:"jsonp",parser:{
+                tumblr:{url:'http://iatek.tumblr.com/api/read/json?callback=helpers.cb&limit=|num|',dataType:"jsonp",parser:{
                     name: "tumblr",
                     resultsSelector: "data.posts",
                     heading: "tumblr",
