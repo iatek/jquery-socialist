@@ -6,7 +6,7 @@ jQuery Socialist is a plugin that lets you create a social stream or social wall
 Use it to pull content from Facebook pages, Twitter, LinkedIn, YouTube and others...
 
 Features
-================
+
     - Display updates from multiple social networks in attractive visual layouts
     - Supports Facebook, Twitter, LinkedIn, YouTube, Tumblr, Pinterest, RSS Feeds, Craigslist, Google+ and more..
     - Multiple themes
@@ -14,7 +14,7 @@ Features
 
 
 Usage
-================
+
     
     1) Include the .js and .css files in your HTML document <HEAD> section:
     
