@@ -21,7 +21,7 @@ Usage
     <link href="../jquery.socialist.css" rel="stylesheet" />
     <script src='../jquery.socialist.js'></script>
 
-    2) Initiate jQuery Socialist to any <DIV> element within your javascript code:
+    2) Use jQuery Socialist on any <DIV> element:
 
     $('#content').socialist({
         networks: [
@@ -43,7 +43,7 @@ Usage
 Examples
 =========
 
-    <a href='http://plugins.in1.com/socialist/demo'>Display Instagram photos in Pinterest-style layouts</a>
+    [Display Instagram photos in Pinterest-style layouts][1]
     <a href='http://plugins.in1.com/socialist/demo'>Combine and display Facebook, Twitter and LinkedIn updates</a>
     <a href='http://plugins.in1.com/socialist/demo'>Show YouTube video thumbnails</a>
     <a href='http://plugins.in1.com/socialist/demo'>Display Craiglist postings for an area and category</a>
@@ -59,5 +59,5 @@ Dependencies
     - jQuery Isotope Plugin v1.5.19: An exquisite jQuery plugin for magical layouts (http://isotope.metafizzy.co)
     - jQuery Cross Domain Ajax: http://james.padolsey.com/javascript/cross-domain-requests-with-jquery/
     
-    
+    [1]:http://plugins.in1.com/socialist/demo
     
