@@ -62,8 +62,6 @@
                         console.log('some requests failed.');
                     });
                     
-                    //$element.isotope('shuffle',function(){})
-                    
                 }); // end plugin instance
             }
         }
@@ -226,10 +224,12 @@
                     if (fields.indexOf('text')!=-1 || fields.indexOf('image')!=-1) {
                         $contentDiv.appendTo(container);            
                     }
-                                                   
+                
+                /* TODO: implement sharing links
                     if (fields.indexOf('share')!=-1){
                         $shareDiv.appendTo(container);
                     }
+                    */
                     
                     $source.appendTo($footDiv);
                     if (fields.indexOf('source')!=-1){
@@ -243,7 +243,6 @@
                     
                     if (fields.indexOf('date')!=-1){
                         $dateSpan.text(itemObj.date);                            
-                        //$dateSpan.appendTo($source);
                         $dateSpan.appendTo($sourceLnkDiv);
                     }
                     
@@ -333,7 +332,7 @@
                     preProcessor: null,
                     preCondition: "true"}
                 },
-                tumblr:{url:'http://iatek.tumblr.com/api/read/json?callback=helpers.cb&limit=|num|',dataType:"jsonp",parser:{
+                tumblr:{url:'http://iatek.tumblr.com/api/read/json?callback=helpers.cb&num=|num|',dataType:"jsonp",parser:{
                     name: "tumblr",
                     resultsSelector: "data.posts",
                     heading: "tumblr",

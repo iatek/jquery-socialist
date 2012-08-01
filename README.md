@@ -43,11 +43,13 @@ Usage
 Examples
 =========
 
-    - Display Instagram photos in Pinterest-style layouts
-    - Combine and display Facebook, Twitter and LinkedIn updates
-    - Show YouTube video thumbnails
-    - Display Craiglist postings for an area and category
-    - Visualize any RSS feed as a responsive social wall
+    - <a href='http://plugins.in1.com/socialist'>Display Instagram photos in Pinterest-style layouts</a>
+    - <a href='http://plugins.in1.com/socialist'>Combine and display Facebook, Twitter and LinkedIn updates</a>
+    - <a href='http://plugins.in1.com/socialist'>Show YouTube video thumbnails</a>
+    - <a href='http://plugins.in1.com/socialist'>Display Craiglist postings for an area and category</a>
+    - <a href='http://plugins.in1.com/socialist'>Visualize any RSS feed as a responsive social wall</a>
+    
+    More Demos...
 
 Dependencies
 ================
