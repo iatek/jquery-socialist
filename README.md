@@ -7,15 +7,15 @@ Use it to pull content from Facebook pages, Twitter, LinkedIn, YouTube and other
 
 Examples
 
-    [Display Instagram photos in Pinterest-style layouts][1]
-    [Combine and display Facebook, Twitter and LinkedIn updates][1]
-    [Show YouTube video thumbnails][1]
-    [Display Craiglist postings for an area and category][1]
-    [Visualize any RSS feed as a responsive social wall][1]
-    
-    [Click Here for More Demos][2]
-    [1]: http://plugins.in1.com/socialist/demo
-    [2]: http://plugins.in1.com/socialist/
+[Display Instagram photos in Pinterest-style layouts][1]
+[Combine and display Facebook, Twitter and LinkedIn updates][1]
+[Show YouTube video thumbnails][1]
+[Display Craiglist postings for an area and category][1]
+[Visualize any RSS feed as a responsive social wall][1]
+
+[Click Here for More Demos][2]
+[1]: http://plugins.in1.com/socialist/demo
+[2]: http://plugins.in1.com/socialist/
 
 Features
 
