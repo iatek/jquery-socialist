@@ -59,5 +59,5 @@ Dependencies
     - jQuery Isotope Plugin v1.5.19: An exquisite jQuery plugin for magical layouts (http://isotope.metafizzy.co)
     - jQuery Cross Domain Ajax: http://james.padolsey.com/javascript/cross-domain-requests-with-jquery/
     
-    [1]:http://plugins.in1.com/socialist/demo
-    
+
+[1]: http://plugins.in1.com/socialist/demo    
