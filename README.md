@@ -13,6 +13,10 @@ Features
     - Multiple themes
     - Easy to implement with just a few lines of code
 
+
+![Plugin Screenshot](http://plugins.in1.com/images/socialist/ss1.png)
+
+
 Examples
 ================
 
