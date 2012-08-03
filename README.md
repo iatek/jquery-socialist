@@ -9,7 +9,7 @@ Features
 ================
 
     - Display updates from multiple social networks in attractive visual layouts
-    - Supports Facebook, Twitter, LinkedIn, YouTube, Tumblr, Pinterest, RSS Feeds, Craigslist, Google+ and more..
+    - Supports Facebook, Twitter, LinkedIn, YouTube, Tumblr, Flickr, Pinterest, RSS Feeds, Craigslist, Google+ and more..
     - Multiple themes
     - Easy to implement with just a few lines of code
 
@@ -20,7 +20,7 @@ Features
 Examples
 ================
 
-[Display Instagram photos in Pinterest-style layouts][1]
+[Display Flickr photos in Pinterest-style layouts][1]
 
 [Combine and display Facebook, Twitter and LinkedIn updates][1] 
 
@@ -63,7 +63,38 @@ Usage
 
 Options
 ================
-    (TODO: Documentation)
+    networks
+    An array of network definition objects
+    network defintions
+    A javascript object containing the name of the network, id and other network specific parameters. Most networks require only the id. Some networks such as Craiglist and Flickr require additional options.
+    
+        {name:'linkedin',id:'linkedin-companyname'},
+        {name:'facebook',id:'(facebook-pagename)'},
+        {name:'tumblr',id:'(tumblr-blogname)'},
+        {name:'pinterest',id:'(pinterest-username/pinboard-name)'},
+        {name:'flickr',id:'54772265@N04',apiKey:'(your-flick-api-key here)'},
+        {name:'youtube',id:'potterybarn'},
+        {name:'twitter',id:'in1dotcom'},
+        {name:'googleplus',id:'105588557807820541973/posts'},
+        {name:'rss',id:'http://www.makebetterwebsites.com/feed/'},
+        {name:'craigslist',id:'boo',areaName:'southcoast'}
+        
+    random
+    true or false; default value is: true
+    isotope
+    true or false; ; default value is: true
+    headingLength
+    An integer value that indicates the max number of characters to display in the 'heading' field of each result
+    textLength
+    An integer value that indicates the max number of characters to display in the 'text' description field
+    maxResults
+    An integer value that indicates the max number of results to show
+    theme
+    (none) or 'clean'; default value is: (none)
+    size
+    (none) or 'small' or 'large'; default value is:(none)
+    fields
+    An array of strings that indicate which field values to display. Any of the following: 'source','heading','text','date','image','share'
 
 Dependencies
 ================

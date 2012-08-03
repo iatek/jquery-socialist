@@ -33,6 +33,7 @@
                         // replace params in request url
                         reqUrl = reqUrl.replace("|id|",item.id);
                         reqUrl = reqUrl.replace("|areaName|",item.areaName);
+                        reqUrl = reqUrl.replace("|apiKey|",item.apiKey);
                         reqUrl = reqUrl.replace("|num|",settings.maxResults);
                         // add to array for processing
                         processList.push(helpers.doRequest(reqUrl,nw.dataType,nw.cb,nw.parser,settings));
@@ -72,7 +73,7 @@
                 var container=$('<div></div>');
                 //console.log(JSON.stringify(data));
                                                    
-                apiParser.resultsSelector = apiParser.resultsSelector.replace('|num|',settings.maxResults);             
+                apiParser.resultsSelector = apiParser.resultsSelector.replace('|num|',settings.maxResults);          
                     
                 $.each(eval(apiParser.resultsSelector), function(i,item) {
                     
@@ -137,6 +138,7 @@
                                     imgSrc="";
                                 }
                             }
+
                             
                             // image link
                             if (apiParser.imgHrefSelector===null){
@@ -348,8 +350,23 @@
                     preCondition: "true"}
                 
                 },
-                digg:{url:'http://digg.com/',img:''},
-                googleplus:{url:'https://plus.google.com/|id|',img:'',dataType:'text',parser:{
+                digg:{url:'http://digg.com/'},
+                flickr:{url:'http://api.flickr.com/services/rest/?extras=tags%2Cdescription%2Cdate_upload&nojsoncallback=1&api_key=|apiKey|&method=flickr.people.getPublicPhotos&format=json&per_page=|num|&user_id=|id|',dataType:'json',parser:{
+                        name: "Flickr",
+                        resultsSelector: "data.photos.photo",
+                        heading: "Flickr",
+                        headingSelector: "item.title",
+                        dateSelector: "new Date(item.dateupload)",
+                        txtSelector: "(item.description._content)||item.tags",
+                        imgSrcSelector: "'http://farm' + item.farm + '.staticflickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_n.jpg'",
+                       //"imgSrcSelector": "\"http://farm\" + item.farm + \".staticflickr.com/\" + item.server + \"/\" + item.id + \"_\" + item.secret + \"_n.jpg\"",
+                        imgHrefSelector: "\"http://flickr.com/photos/\" + item.owner + \"/\" + item.id + \"\"",
+                        imgAltSelector: "item.title",
+                        imgSrcProcessor: null,
+                        preCondition: "true"
+                   }
+                },
+                googleplus:{url:'https://plus.google.com/|id|',dataType:'text',parser:{
                     name: "google",
                     resultsSelector:"$(data.responseText).find('div.zg:lt(|num|)')",
                     heading: "Google+",
@@ -363,9 +380,6 @@
                     link: "#",
                     preProcessor: null,
                     preCondition: "true"}
-                },
-                instagram:{url:'',dataType:'json',img:{},parser:{                 
-                    }
                 },
                 pinterest:{url:'http://pinterest.com/|id|/',dataType:"text",parser:{
                     name: "pinterest",

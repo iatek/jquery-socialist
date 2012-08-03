@@ -108,6 +108,13 @@
     background-image:url('images/32/facebook-32x32.png');
 }
 
+.socialist-flickr.foot {
+    background-color:#dfdfdf;
+}  
+.socialist-flickr .api {
+    background-image:url('images/32/flickr-32x32.png');
+}  
+
 .socialist-twitter .content  img {
     width:60px !important;
     max-width:60px !important;
