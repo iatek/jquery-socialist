@@ -63,10 +63,11 @@ Usage
 
 Options
 ================
-    networks
+    **networks**
     An array of network definition objects
-    network defintions
-    A javascript object containing the name of the network, id and other network specific parameters. Most networks require only the id. Some networks such as Craiglist and Flickr require additional options.
+    **network definitions**
+    A javascript object containing the name of the network, id and other network specific parameters.
+    Most networks require only the id. Some networks such as Craiglist and Flickr require additional options.
     
         {name:'linkedin',id:'linkedin-companyname'},
         {name:'facebook',id:'(facebook-pagename)'},
@@ -79,21 +80,21 @@ Options
         {name:'rss',id:'http://www.makebetterwebsites.com/feed/'},
         {name:'craigslist',id:'boo',areaName:'southcoast'}
         
-    random
+    **random**
     true or false; default value is: true
-    isotope
-    true or false; ; default value is: true
-    headingLength
+    **isotope**
+    true or false; default value is: true
+    **headingLength**
     An integer value that indicates the max number of characters to display in the 'heading' field of each result
-    textLength
+    **textLength**
     An integer value that indicates the max number of characters to display in the 'text' description field
-    maxResults
+    **maxResults**
     An integer value that indicates the max number of results to show
-    theme
+    **theme**
     (none) or 'clean'; default value is: (none)
-    size
+    **size**
     (none) or 'small' or 'large'; default value is:(none)
-    fields
+    **fields**
     An array of strings that indicate which field values to display. Any of the following: 'source','heading','text','date','image','share'
 
 Dependencies
