@@ -22,7 +22,12 @@
                 // each instance of this plugin
                 return this.each(function() {
                     var $element = $(this),
+                        visible = $element.is(":visible"),
                         element = this;
+                    
+                    if (visible) {
+                        $element.hide();
+                    }
                     
                     // loop each network
                     networks.forEach(function(item) {
@@ -41,7 +46,7 @@
                     
                     // process the array of requests, then add resulting elements to container element
                     $.when.apply($, processList).then(function(){
-                                
+       
                         for (var i = 0; i < queue.length; i++) {
                            queue[i].children().appendTo($element);
                         }
@@ -53,12 +58,20 @@
                                 $element.isotope ({
                                      animationEngine: 'jquery'
                                 });
-                                
+                                if (visible && settings.autoShow) {
+                                    $element.show();
+                                }
                                 if (settings.random){
                                     $element.isotope( 'shuffle', function(){} );
                                 }
                             });
                         }
+                        else {
+                            if (visible) {
+                                $element.show();
+                            }
+                        }
+                        
                     },function(){
                         console.log('some requests failed.');
                     });
@@ -103,6 +116,26 @@
                             
                             if (settings.size) {
                                  $div.addClass('socialist-'+settings.size);   
+                            }
+                            
+                            if (!settings.isotope) {
+                                $div.addClass('socialist-simple'); 
+                            }
+                            
+                            if (settings.width) {
+                                $div.css('width',settings.width); 
+                            }
+                            
+                            if (settings.margin) {
+                                $div.css('margin',settings.margin); 
+                            }
+                            
+                            if (settings.border) {
+                                $div.css('border',settings.border); 
+                            }
+                            
+                            if (settings.padding) {
+                                $div.css('padding',settings.padding); 
                             }
                             
                             //console.log(item);
@@ -206,13 +239,14 @@
                     $apiSpan = $('<div class="api"></div>'),
                     $apiSpanLnk = $('<a href="'+itemObj.img.href+'"><img src="https://c9.io/skelly/jquery-socialist/workspace/images/spacer.gif"></a>'),
                     $contentDiv = $('<div class="content"/>'),
+                    $contentDivInner = $('<div>'+itemObj.txt+' </div>'),
                     $imgLnk = $('<a href="'+itemObj.img.href+'" title="'+itemObj.link.title+'"></a>'),
                     $img = $('<image src="'+itemObj.img.src+'" alt="'+helpers.stripHtml(itemObj.img.alt)+'">'),
                     $shareDiv = $('<div class="share"><a href="#" title='+itemObj.api+'>fb</a>|<a href="#" class="x">tw</a></div>'),
                     $dateSpan = $('<div class="date"/>'),
                     $footDiv = $('<div class="foot"/>');
                     
-                    console.log(itemObj.img.src);
+                    //console.log(itemObj.img.src);
 
                     if (fields.indexOf('image')!=-1 && itemObj.img.src){                                   
                         $img.appendTo($imgLnk);
@@ -220,7 +254,7 @@
                     }
                     
                     if (fields.indexOf('text')!=-1 || typeof itemObj.img.src==="undefined" ){
-                        $('<div>'+itemObj.txt+'</div>').appendTo($contentDiv);
+                         $contentDivInner.appendTo($contentDiv);
                     }
                     
                     if (fields.indexOf('text')!=-1 || fields.indexOf('image')!=-1) {
@@ -234,13 +268,16 @@
                     */
                     
                     $source.appendTo($footDiv);
+                    $sourceLnk.text(itemObj.heading);
                     if (fields.indexOf('source')!=-1){
-                        $sourceLnk.text(itemObj.heading);
-                        $sourceLnk.appendTo($sourceLnkDiv);                                                                                     
+                        $sourceLnk.appendTo($sourceLnkDiv);
                         $sourceLnkDiv.appendTo($source);
                         $apiSpanLnk.appendTo($apiSpan);
                         $apiSpan.appendTo($footDiv);
                         $source.appendTo($footDiv);                                                                                        
+                    }
+                    else {
+                        $sourceLnk.appendTo($contentDivInner);
                     }
                     
                     if (fields.indexOf('date')!=-1){
@@ -352,18 +389,17 @@
                 },
                 digg:{url:'http://digg.com/'},
                 flickr:{url:'http://api.flickr.com/services/rest/?extras=tags%2Cdescription%2Cdate_upload&nojsoncallback=1&api_key=|apiKey|&method=flickr.people.getPublicPhotos&format=json&per_page=|num|&user_id=|id|',dataType:'json',parser:{
-                        name: "Flickr",
-                        resultsSelector: "data.photos.photo",
-                        heading: "Flickr",
-                        headingSelector: "item.title",
-                        dateSelector: "new Date(item.dateupload)",
-                        txtSelector: "(item.description._content)||item.tags",
-                        imgSrcSelector: "'http://farm' + item.farm + '.staticflickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_n.jpg'",
-                       //"imgSrcSelector": "\"http://farm\" + item.farm + \".staticflickr.com/\" + item.server + \"/\" + item.id + \"_\" + item.secret + \"_n.jpg\"",
-                        imgHrefSelector: "\"http://flickr.com/photos/\" + item.owner + \"/\" + item.id + \"\"",
-                        imgAltSelector: "item.title",
-                        imgSrcProcessor: null,
-                        preCondition: "true"
+                    name: "flickr",
+                    resultsSelector: "data.photos.photo",
+                    heading: "Flickr",
+                    headingSelector: "item.title",
+                    dateSelector: "new Date(item.dateupload)",
+                    txtSelector: "(item.description._content)||item.tags",
+                    imgSrcSelector: "'http://farm' + item.farm + '.staticflickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_n.jpg'",
+                    imgHrefSelector: "\"http://flickr.com/photos/\" + item.owner + \"/\" + item.id + \"\"",
+                    imgAltSelector: "item.title",
+                    imgSrcProcessor: null,
+                    preCondition: "true"
                    }
                 },
                 googleplus:{url:'https://plus.google.com/|id|',dataType:'text',parser:{
@@ -528,7 +564,8 @@
         isotope: true,
         headingLength: 31,
         textLength: 160,
-        maxResults:7,
+        maxResults: 7,
+        autoShow: true,
         fields:['source','heading','text','date','image','followers','likes','share']
     }
 

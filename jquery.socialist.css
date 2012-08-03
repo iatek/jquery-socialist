@@ -108,7 +108,7 @@
     background-image:url('images/32/facebook-32x32.png');
 }
 
-.socialist-flickr.foot {
+.socialist-flickr .foot {
     background-color:#dfdfdf;
 }  
 .socialist-flickr .api {
@@ -157,6 +157,17 @@
 .socialist-youtube .api {
     background-image:url('images/32/youtube-32x32.png');
 }  
+
+/* simple list */
+.socialist-simple {
+    box-shadow:#999 0px 0px 0px 0px;
+    margin: 0;
+    width: auto;
+}
+.socialist-simple .content {
+    min-height:1px;
+    border:0;
+}
 
 /* large */
 .socialist-large {
