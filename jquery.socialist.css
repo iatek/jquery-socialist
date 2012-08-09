@@ -61,9 +61,10 @@
     background-repeat:no-repeat;
 } 
 
-.socialist .api img {
+.socialist .api a {
     height:32px;
     width:32px;
+    display:block;
 }  
 
 .socialist .date {
@@ -254,6 +255,8 @@
 }  
 
 .socialist-loader {
+    min-width:120px;
+    min-height:120px;
     background-image:url('images/ajax-loader.gif');
     background-repeat:no-repeat;
 }

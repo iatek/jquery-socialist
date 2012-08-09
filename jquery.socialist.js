@@ -58,11 +58,12 @@
                                      animationEngine: 'jquery'
                                 });
                                 
-                                 $element.removeClass('socialist-loader');
+                                $element.removeClass('socialist-loader');
                                 
                                 if (settings.random){
                                     $element.isotope( 'shuffle', function(){} );
                                 }
+                                
                             });
                         }
                         else {
@@ -234,7 +235,7 @@
                     $sourceLnk = $('<a href="'+itemObj.img.href+'" title="'+itemObj.link.title+'"></a>'),
                     $sourceLnkDiv = $('<div/>'),
                     $apiSpan = $('<div class="api"></div>'),
-                    $apiSpanLnk = $('<a href="'+itemObj.img.href+'"><img src="images/spacer.gif"></a>'),
+                    $apiSpanLnk = $('<a href="'+itemObj.img.href+'"></a>'),
                     $contentDiv = $('<div class="content"/>'),
                     $contentDivInner = $('<div>'+itemObj.txt+' </div>'),
                     $imgLnk = $('<a href="'+itemObj.img.href+'" title="'+itemObj.link.title+'"></a>'),
