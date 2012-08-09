@@ -2,7 +2,7 @@
  * jQuery.socialist - social media plugin
  * ---
  * @author Carol Skelly (http://iatek.com)
- * @version 0.1
+ * @version 1.0
  * ---
  */
 
@@ -25,9 +25,8 @@
                         visible = $element.is(":visible"),
                         element = this;
                     
-                    if (visible) {
-                        $element.hide();
-                    }
+                    // display loader
+                    $element.addClass('socialist-loader');
                     
                     // loop each network
                     networks.forEach(function(item) {
@@ -58,18 +57,16 @@
                                 $element.isotope ({
                                      animationEngine: 'jquery'
                                 });
-                                if (visible && settings.autoShow) {
-                                    $element.show();
-                                }
+                                
+                                 $element.removeClass('socialist-loader');
+                                
                                 if (settings.random){
                                     $element.isotope( 'shuffle', function(){} );
                                 }
                             });
                         }
                         else {
-                            if (visible) {
-                                $element.show();
-                            }
+                            $element.removeClass('socialist-loader');
                         }
                         
                     },function(){
