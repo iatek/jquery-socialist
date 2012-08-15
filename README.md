@@ -105,3 +105,10 @@ Dependencies
     - jQuery Isotope Plugin v1.5.19: An exquisite jQuery plugin for magical layouts (http://isotope.metafizzy.co)
     - jQuery Cross Domain Ajax: http://james.padolsey.com/javascript/cross-domain-requests-with-jquery/
     
+License
+================
+
+jQuery Socialist is provided under a MIT license: http://opensource.org/licenses/mit-license.php/
+
+Use of the included jQuery Isotope Plugin requires a commerical use license: http://metafizzy.co/#licenses
+    
