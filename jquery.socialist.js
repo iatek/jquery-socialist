@@ -3,6 +3,7 @@
  * ---
  * @author Carol Skelly (http://iatek.com)
  * @version 1.0
+ * @license MIT license (http://opensource.org/licenses/mit-license.php)
  * ---
  */
 
