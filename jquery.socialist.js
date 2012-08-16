@@ -29,20 +29,34 @@
                     // display loader
                     $element.addClass('socialist-loader');
                     
-                    // loop each network
-                    networks.forEach(function(item) {
-                        // get network settings
-                        var nw = helpers.networkDefs[item.name];
-                        nw.cb=function(newElement){queue.push(newElement)};
-                        var reqUrl = nw.url;
-                        // replace params in request url
-                        reqUrl = reqUrl.replace("|id|",item.id);
-                        reqUrl = reqUrl.replace("|areaName|",item.areaName);
-                        reqUrl = reqUrl.replace("|apiKey|",item.apiKey);
-                        reqUrl = reqUrl.replace("|num|",settings.maxResults);
-                        // add to array for processing
-                        processList.push(helpers.doRequest(reqUrl,nw.dataType,nw.cb,nw.parser,settings));
-                    });
+                    if (settings.feed) {
+                        processList.push(helpers.doRequest(settings.feed,"json",function(q){
+    						var container=$('<div></div>');
+							q.data.forEach(function(item) {
+								var $div = $('<div class="socialist"></div>');
+								$div.addClass('socialist-'+item.api);
+								$div = helpers.buildItem(item,$div,settings.fields);
+								$div.appendTo(container);
+							});
+							queue.push(container);
+						},null,settings))
+                    }
+                    else {
+                        // loop each network
+                        networks.forEach(function(item) {
+                            // get network settings
+                            var nw = helpers.networkDefs[item.name];
+                            nw.cb=function(newElement){queue.push(newElement)};
+                            var reqUrl = nw.url;
+                            // replace params in request url
+                            reqUrl = reqUrl.replace("|id|",item.id);
+                            reqUrl = reqUrl.replace("|areaName|",item.areaName);
+                            reqUrl = reqUrl.replace("|apiKey|",item.apiKey);
+                            reqUrl = reqUrl.replace("|num|",settings.maxResults);
+                            // add to array for processing
+                            processList.push(helpers.doRequest(reqUrl,nw.dataType,nw.cb,nw.parser,settings));
+                        });
+                    }
                     
                     // process the array of requests, then add resulting elements to container element
                     $.when.apply($, processList).then(function(){
