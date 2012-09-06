@@ -23,8 +23,8 @@
                 // each instance of this plugin
                 return this.each(function() {
                     var $element = $(this),
-                        visible = $element.is(":visible"),
-                        element = this;
+                        item,
+                        visible = $element.is(":visible");
                     
                     // display loader
                     $element.addClass('socialist-loader');
@@ -32,19 +32,20 @@
                     if (settings.feed) {
                         processList.push(helpers.doRequest(settings.feed,"json",function(q){
     						var container=$('<div></div>');
-							q.data.forEach(function(item) {
+                            for (var i = 0; i < q.data.length; i++) {
+                                item = q.data[i];
 								var $div = $('<div class="socialist"></div>');
 								$div.addClass('socialist-'+item.api);
 								$div = helpers.buildItem(item,$div,settings.fields);
 								$div.appendTo(container);
-							});
+							}
 							queue.push(container);
 						},null,settings))
                     }
                     else {
                         // loop each network
-                        networks.forEach(function(item) {
-                            // get network settings
+                        for (var i = 0; i < networks.length; i++) {
+                            item = networks[i];
                             var nw = helpers.networkDefs[item.name];
                             nw.cb=function(newElement){queue.push(newElement)};
                             var reqUrl = nw.url;
@@ -55,11 +56,11 @@
                             reqUrl = reqUrl.replace("|num|",settings.maxResults);
                             // add to array for processing
                             processList.push(helpers.doRequest(reqUrl,nw.dataType,nw.cb,nw.parser,settings));
-                        });
+                        }
                     }
                     
                     // process the array of requests, then add resulting elements to container element
-                    $.when.apply($, processList).then(function(){
+                    $.when.apply($, processList).always(function(){
        
                         for (var i = 0; i < queue.length; i++) {
                            queue[i].children().appendTo($element);
@@ -86,7 +87,7 @@
                         }
                         
                     },function(){
-                        console.log('some requests failed.');
+                        //console.log('some requests failed.');
                     });
                     
                 }); // end plugin instance
@@ -219,15 +220,15 @@
                              
                     }
                     catch (e) {
-                       console.log("parse error:"+apiParser.name+":"+e)
+                       //console.log("parse error:"+apiParser.name+":"+e)
                     }
                 }); // end each
                 return container;
             },
             doRequest: function(url,dataType,cb,parser,settings){
-                console.log("ajax: " + dataType + ":" + url);
+                //console.log("ajax: " + dataType + ":" + url);
                 return $.ajax({
-                    url: url, //encodeURIComponent(url)?;
+                    url: url,
                     type: "GET",
                     dataType: dataType,
                     success: function(data) {
@@ -237,7 +238,8 @@
                             cb(data);
                     },
                     error: function(status) {
-                        console.log("request error:"+url);   
+                        //console.log("request error:"+url);
+                        cb($('<div></div>'));
                     }
                 });
                 
@@ -664,6 +666,16 @@ jQuery.ajax = (function(_ajax){
     };
     
 })(jQuery.ajax);
+
+/** IE **/
+if (!Array.prototype.indexOf) { 
+    Array.prototype.indexOf = function(obj, start) {
+         for (var i = (start || 0), j = this.length; i < j; i++) {
+             if (this[i] === obj) { return i; }
+         }
+         return -1;
+    }
+}
 
 /**
  * Isotope v1.5.19
