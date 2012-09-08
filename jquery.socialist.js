@@ -386,7 +386,7 @@
                     preProcessor: null,
                     preCondition: "true"}
                 },
-                tumblr:{url:'http://iatek.tumblr.com/api/read/json?callback=helpers.cb&num=|num|',dataType:"jsonp",parser:{
+                tumblr:{url:'http://|id|.tumblr.com/api/read/json?callback=helpers.cb&num=|num|',dataType:"jsonp",parser:{
                     name: "tumblr",
                     resultsSelector: "data.posts",
                     heading: "tumblr",
@@ -588,6 +588,15 @@
 
 })(jQuery);
 
+/** IE **/
+if (!Array.prototype.indexOf) { 
+    Array.prototype.indexOf = function(obj, start) {
+         for (var i = (start || 0), j = this.length; i < j; i++) {
+             if (this[i] === obj) { return i; }
+         }
+         return -1;
+    }
+}
 
 // begin dependencies
 
@@ -666,16 +675,6 @@ jQuery.ajax = (function(_ajax){
     };
     
 })(jQuery.ajax);
-
-/** IE **/
-if (!Array.prototype.indexOf) { 
-    Array.prototype.indexOf = function(obj, start) {
-         for (var i = (start || 0), j = this.length; i < j; i++) {
-             if (this[i] === obj) { return i; }
-         }
-         return -1;
-    }
-}
 
 /**
  * Isotope v1.5.19
