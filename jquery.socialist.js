@@ -327,7 +327,7 @@
                     preCondition: "$(item.content).find(\"img[src]:contains('http')\")"
                     }
                 },
-                facebook:{url:'http://graph.facebook.com/|id|/photos?limit=|num|',img:'',dataType:'json',parser:{
+                facebook:{url:'http://graph.facebook.com/|id|/photos?limit=|num|',img:'',dataType:'jsonp',parser:{
                     name: "facebook",
                     resultsSelector: "data.data",
                     heading: "Facebook",
@@ -342,7 +342,7 @@
                     preProcessor: null,
                     preCondition: "true"}
                 },
-                youtube:{url:'https://gdata.youtube.com/feeds/api/users/|id|/uploads?alt=json&max-results=|num|',dataType:"json",img:'',parser:{
+                youtube:{url:'https://gdata.youtube.com/feeds/api/users/|id|/uploads?alt=json&max-results=|num|',dataType:"jsonp",img:'',parser:{
                     name: "youtube",
                     resultsSelector: "data.feed.entry",
                     heading: "YouTube",
