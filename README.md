@@ -1,7 +1,7 @@
 jquery-socialist -  A jQuery social plugin for creating streams from social networks and feeds
 ================
 
-Even if you hate <a href='http://en.wikipedia.org/wiki/Socialism'>socialism</a>, you'll love this flexible jQuery social media plugin.
+Even if you hate <a href='http://en.wikipedia.org/wiki/Socialism'>socialism</a> (as I do), you'll love this flexible jQuery social media plugin.
 jQuery Socialist is a plugin that lets you create a social stream or social wall from multiple social networks in one place.
 Use it to pull content from Facebook pages, Twitter, LinkedIn, YouTube and others.
 
@@ -108,7 +108,10 @@ Dependencies
 License
 ================
 
-jQuery Socialist is provided under a MIT license: http://opensource.org/licenses/mit-license.php/
+jQuery Socialist (a social media plugin) is provided under a MIT license: http://opensource.org/licenses/mit-license.php/
 
 Use of the included jQuery Isotope Plugin requires a commerical use license: http://metafizzy.co/#licenses
-    
+
+Updates
+================
+9/24/2012 - Fixed Tumblr parsing issues

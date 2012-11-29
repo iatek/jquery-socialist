@@ -2,7 +2,7 @@
  * jQuery.socialist - social media plugin
  * ---
  * @author Carol Skelly (http://iatek.com)
- * @version 1.0
+ * @version 1.01
  * @license MIT license (http://opensource.org/licenses/mit-license.php)
  * ---
  */
@@ -79,7 +79,6 @@
                                 if (settings.random){
                                     $element.isotope( 'shuffle', function(){} );
                                 }
-                                
                             });
                         }
                         else {
@@ -356,7 +355,7 @@
                     preProcessor: null,
                     preCondition: "true"}
                 },
-                twitter:{url:'https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=false&screen_name=|id|&count=|num|',dataType:"jsonp",img:'',parser:{
+                twitter:{url:'https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=|id|&count=|num|',dataType:"jsonp",img:'',parser:{
                     name: "twitter",
                     resultsSelector: "data",
                     heading: "Twitter",
@@ -391,9 +390,9 @@
                     resultsSelector: "data.posts",
                     heading: "tumblr",
                     headingSelector: "(item['photo-caption'])||data.tumblelog.title",
-                    txtSelector: "(helpers.stripHtml(item['regular-body']))||(item['regular-title'])||item['photo-caption']",
+                    txtSelector: "(helpers.stripHtml(item['regular-body']))||(item['link-description'])||(item['regular-title'])||item['photo-caption']",
                     dateSelector: "item.date",
-                    imgSrcSelector: "item['photo-url-250']",
+                    imgSrcSelector: "(item['photo-url-250'])||$(item['link-description']).find('img').attr('src')",
                     imgSrcProcessor: null,
                     imgHrefSelector: "item.url",
                     imgAltSelector: "(item['regular-title'])||item.tags.toString()",
@@ -574,7 +573,7 @@
     }
 
     $.fn.socialist.defaults = {
-        networks: [{name:'linkedin',id:'iatek-llc'},{name:'pinterest',id:'carolskelly/in1-com'},{name:'twitter',id:'in1dotcom'}],
+        networks: [{name:'linkedin',id:'iatek-llc'},{name:'facebook',id:'in1dotcom'},{name:'twitter',id:'in1dotcom'}],
         random: true,
         isotope: true,
         headingLength: 31,
