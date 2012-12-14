@@ -401,7 +401,6 @@
                     preCondition: "true"}
                 
                 },
-                digg:{url:'http://digg.com/'},
                 flickr:{url:'http://api.flickr.com/services/rest/?extras=tags%2Cdescription%2Cdate_upload&nojsoncallback=1&api_key=|apiKey|&method=flickr.people.getPublicPhotos&format=json&per_page=|num|&user_id=|id|',dataType:'json',parser:{
                     name: "flickr",
                     resultsSelector: "data.photos.photo",
@@ -460,6 +459,23 @@
                     link: "#",
                     preProcessor: null,
                     preCondition: "true"}
+               },
+               instagram:{url:"https://api.instagram.com/v1/tags/|id|/media/recent?client_id=|apiKey|",dataType:"jsonp",parser: {
+                   name: "instagram",
+                   resultsSelector: "data.data",
+                   heading: "Instagr.am",
+                   headingSelector: "item.caption.text",
+                   txtSelector: "item.caption.text",
+                   imgSrcSelector: "(item.images.low_resolution.url)||'/assets/spacer.gif'",
+                   imgHrefSelector: "item.link",
+                   imgSrcProcessor: null,
+                   imgAltSelector: "item.caption.text",
+                   dateSelector: null,
+                   link: "#",
+                   linkSelector: null,
+                   preCondition: "true",
+                   locationSelector: "item.location",
+                   tagsSelector: "item.tags"}
                },
                craigslist:{url:"http://|areaName|.craigslist.org/|id|",dataType:"text",parser:{
                     name: "craigslist",

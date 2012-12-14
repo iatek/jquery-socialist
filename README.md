@@ -3,13 +3,13 @@ jquery-socialist -  A jQuery social plugin for creating streams from social netw
 
 Even if you hate <a href='http://en.wikipedia.org/wiki/Socialism'>socialism</a> (as I do), you'll love this flexible jQuery social media plugin.
 jQuery Socialist is a plugin that lets you create a social stream or social wall from multiple social networks in one place.
-Use it to pull content from Facebook pages, Twitter, LinkedIn, YouTube and others.
+Use it to pull content from Facebook pages, Twitter, Instagram, LinkedIn, YouTube and others.
 
 Features
 ================
 
     - Display updates from multiple social networks in attractive visual layouts
-    - Supports Facebook, Twitter, LinkedIn, YouTube, Tumblr, Flickr, Pinterest, RSS Feeds, Craigslist, Google+ and more..
+    - Supports Facebook, Twitter, LinkedIn, YouTube, Tumblr, Instagram, Flickr, Pinterest, RSS Feeds, Craigslist, Google+ and more..
     - Multiple themes
     - Easy to implement with just a few lines of code
 
@@ -78,7 +78,8 @@ Options
         {name:'twitter',id:'in1dotcom'},
         {name:'googleplus',id:'105588557807820541973/posts'},
         {name:'rss',id:'http://www.makebetterwebsites.com/feed/'},
-        {name:'craigslist',id:'boo',areaName:'southcoast'}
+        {name:'craigslist',id:'boo',areaName:'southcoast'},
+        {name:'instagram',id:'socialmedia',apiKey:'(your-instagram-api-key here)'},
         
     **random**
     true or false; default value is: true
@@ -115,3 +116,7 @@ Use of the included jQuery Isotope Plugin requires a commerical use license: htt
 Updates
 ================
 9/24/2012 - Fixed Tumblr parsing issues
+12/14/2012 - Added Instagram support
+
+
+
