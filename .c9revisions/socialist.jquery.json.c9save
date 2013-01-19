@@ -4,3 +4,4 @@
 {"ts":1358603687081,"patch":[[{"diffs":[[0,"al feeds"],[-1,"."],[1," f"],[0,"\",\r\n\"key"]],"start1":116,"start2":116,"length1":17,"length2":18}]],"length":866,"saved":false}
 {"ts":1358603704900,"patch":[[{"diffs":[[0," feeds f"],[1,"rom Facebook, Twitter, YouTube and other social networks."],[0,"\",\r\n\"key"]],"start1":118,"start2":118,"length1":16,"length2":73}]],"length":923,"saved":false}
 {"ts":1358603855990,"patch":[[{"diffs":[[0,"name\": \""],[1,"jquery-"],[0,"socialis"]],"start1":4,"start2":4,"length1":16,"length2":23}]],"length":930,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1358604517511,"patch":[[{"diffs":[[0,"\": \"1.0."],[-1,"1"],[1,"2"],[0,"\",\r\n\"aut"]],"start1":319,"start2":319,"length1":17,"length2":17}]],"length":930,"saved":false}
