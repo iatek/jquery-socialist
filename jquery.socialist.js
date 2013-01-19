@@ -326,7 +326,7 @@
                     preCondition: "$(item.content).find(\"img[src]:contains('http')\")"
                     }
                 },
-                facebook:{url:'http://graph.facebook.com/|id|/photos?limit=|num|',img:'',dataType:'jsonp',parser:{
+                facebook:{url:'http://graph.facebook.com/|id|/photos?limit=|num|',img:'',dataType:'json',parser:{
                     name: "facebook",
                     resultsSelector: "data.data",
                     heading: "Facebook",
@@ -487,6 +487,21 @@
                     imgSrcProcessor: "imgSrc.replace('images:',\"\")",
                     imgHrefSelector: "$elem.find('a').attr('href')",
                     imgAltSelector: "$elem.find('span.itempp').text()",
+                    link: "#",
+                    preProcessor: null,
+                    preCondition: "true"}
+                },
+                vimeo:{url:'http://vimeo.com/api/v2/|id|/videos.json',dataType:"jsonp",parser:{
+                    name: "vimeo",
+                    resultsSelector: "data",
+                    heading: "Vimeo",
+                    headingSelector: "item.title",
+                    txtSelector: "item.description",
+                    dateSelector: "helpers.timeAgo(item.upload_date)",
+                    imgSrcSelector: "(item.thumbnail_medium)||'/assets/spacer.gif'",
+                    imgSrcProcessor: null,
+                    imgHrefSelector: "'http://vimeo.com/'+item.id",
+                    imgAltSelector: "item.title",
                     link: "#",
                     preProcessor: null,
                     preCondition: "true"}

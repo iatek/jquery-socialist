@@ -1,0 +1,39 @@
+{
+"name": "socialist",
+"title": "jQuery Socialist",
+"description": "jQuery social media plugin for combining social feeds.",
+"keywords": [
+"social",
+"social media",
+"feed",
+"pinterest",
+"facebook",
+"twitter",
+"youtube",
+"stream"
+],
+"version": "1.0.1",
+"author": {
+"name": "Carol Skelly and other contributors",
+"url": "https://github.com/iatek/jquery-socialist/MIT-LICENSE.txt"
+},
+"maintainers": [
+{
+"name": "Carol Skelly",
+"url": "http://in1.com"
+}
+],
+"licenses": [
+{
+"type": "MIT",
+"url": "https://github.com/iatek/jquery-socialist/MIT-LICENSE.txt"
+}
+],
+"bugs": "https://github.com/iatek/jquery-socialist/issues",
+"homepage": "http://plugins.in1.com/socialist",
+"docs": "https://github.com/iatek/jquery-socialist/blob/master/README.md",
+"download": "http://plugins.in1.com/socialist",
+"dependencies": {
+"jquery": ">=1.83"
+}
+}

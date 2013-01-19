@@ -165,6 +165,16 @@
     background-image:url('images/32/instagram-32x32.png');
 }
 
+.socialist-vimeo .foot {
+    background-color:#4ebbff;
+}  
+.socialist-vimeo .content img {
+    width:150px;
+} 
+.socialist-vimeo .api {
+    background-image:url('images/32/pinterest-32x32.png');
+}  
+
 /* simple list */
 .socialist-simple {
     box-shadow:#999 0px 0px 0px 0px;
