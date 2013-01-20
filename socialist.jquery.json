@@ -1,10 +1,10 @@
 {
-"name": "jquery-socialist",
+"name": "socialist",
 "title": "jQuery Socialist",
 "description": "jQuery social media plugin for combining social feeds from Facebook, Twitter, YouTube and other social networks.",
 "keywords": [
 "social",
-"social media",
+"media",
 "feed",
 "pinterest",
 "facebook",
@@ -12,7 +12,7 @@
 "youtube",
 "stream"
 ],
-"version": "1.0.2",
+"version": "1.0.3",
 "author": {
 "name": "Carol Skelly and other contributors",
 "url": "https://github.com/iatek/jquery-socialist/MIT-LICENSE.txt"
