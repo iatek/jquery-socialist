@@ -364,7 +364,7 @@
                     dateSelector: "helpers.timeAgo(helpers.fixTwitterDate(item.created_at))",
                     imgSrcSelector: "(item.user.profile_image_url)||'/assets/spacer.gif'",
                     imgSrcProcessor: null,
-                    imgHrefSelector: "(item.entities.urls[0].url)||'http://www.twitter.com/'",
+                    imgHrefSelector: "((item.entities.urls[0]||{urls:''}).url)||'http://www.twitter.com/'+item.user.screen_name",
                     imgAltSelector: "item.user.screen_name",
                     link: "#",
                     preProcessor: null,
