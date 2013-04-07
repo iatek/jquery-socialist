@@ -117,6 +117,7 @@ Updates
 ================
 9/24/2012 - Fixed Tumblr parsing issues
 12/14/2012 - Added Instagram support
+2/12/2013 - Fixed Twitter bug on posts w/o links
 
 
 

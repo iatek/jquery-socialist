@@ -9,3 +9,4 @@
 {"ts":1355493735762,"patch":[[{"diffs":[[0,"hcoast'}"],[1,",\n        {name:'instagram',id:'socialmedia',apiKey:'(your-instagram-api-key here)'},"],[0,"\n       "]],"start1":3163,"start2":3163,"length1":16,"length2":101}]],"length":4654,"saved":false}
 {"ts":1355494853949,"patch":[[{"diffs":[[0," issues\n"],[1,"12/14/2012 - Added Instagram support\n"]],"start1":4646,"start2":4646,"length1":8,"length2":45}]],"length":4691,"saved":false}
 {"ts":1355494857012,"patch":[[{"diffs":[[0,"support\n"],[1,"\n\n\n"]],"start1":4683,"start2":4683,"length1":8,"length2":11}]],"length":4694,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1360676507366,"patch":[[{"diffs":[[0,"support\n"],[1,"2/12/2013 - Fixed Twitter bug on posts w/o links\n"],[0,"\n\n\n"]],"start1":4683,"start2":4683,"length1":11,"length2":60}]],"length":4743,"saved":false}
