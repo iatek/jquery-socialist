@@ -484,7 +484,7 @@
                     headingSelector: null,
                     txtSelector: "helpers.fixCase($elem.find('a,font').text())",
                     //imgSrcSelector: "\"http://images.craigslist.org/\"+$elem.find(\"span.ih[id]\").attr('id')",
-                    imgSrcSelector: "\"http://images.craigslist.org/\"+$elem.find(\"span.i\").attr('data-id')",
+                    imgSrcSelector: "\"http://images.craigslist.org/\"+$elem.find(\"span.i img\").attr('src')",
                     imgSrcProcessor: "imgSrc.replace('images:',\"\")",
                     imgHrefSelector: "$elem.find('a').attr('href')",
                     imgAltSelector: "$elem.find('span.itempp').text()",

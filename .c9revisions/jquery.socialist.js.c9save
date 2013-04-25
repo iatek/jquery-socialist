@@ -24,3 +24,5 @@
 {"contributors":[],"silentsave":false,"ts":1366889529371,"patch":[[{"diffs":[[0,"nt').text())\",\r\n"],[1,"                    //imgSrcSelector: \"\\\"http://images.craigslist.org/\\\"+$elem.find(\\\"span.ih[id]\\\").attr('id')\",\r\n"],[0,"                "]],"start1":25102,"start2":25102,"length1":32,"length2":147}]],"length":49714,"saved":false}
 {"ts":1366889550858,"patch":[[{"diffs":[[0,"em.find(\\\"span.i"],[-1,"h[id]"],[0,"\\\").attr('id')\","]],"start1":25307,"start2":25307,"length1":37,"length2":32}]],"length":49709,"saved":false}
 {"ts":1366890228911,"patch":[[{"diffs":[[0,"span.i\\\").attr('"],[1,"data-"],[0,"id')\",\r\n        "]],"start1":25317,"start2":25317,"length1":32,"length2":37}]],"length":49714,"saved":false}
+{"ts":1366890991945,"patch":[[{"diffs":[[0,"\\\"span.i"],[1," img"],[0,"\\\").attr"]],"start1":25315,"start2":25315,"length1":16,"length2":20}]],"length":49718,"saved":false}
+{"ts":1366890994992,"patch":[[{"diffs":[[0,"tr('"],[-1,"data-id"],[1,"src"],[0,"')\","]],"start1":25333,"start2":25333,"length1":15,"length2":11}]],"length":49714,"saved":false}
