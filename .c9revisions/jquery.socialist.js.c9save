@@ -26,3 +26,7 @@
 {"ts":1366890228911,"patch":[[{"diffs":[[0,"span.i\\\").attr('"],[1,"data-"],[0,"id')\",\r\n        "]],"start1":25317,"start2":25317,"length1":32,"length2":37}]],"length":49714,"saved":false}
 {"ts":1366890991945,"patch":[[{"diffs":[[0,"\\\"span.i"],[1," img"],[0,"\\\").attr"]],"start1":25315,"start2":25315,"length1":16,"length2":20}]],"length":49718,"saved":false}
 {"ts":1366890994992,"patch":[[{"diffs":[[0,"tr('"],[-1,"data-id"],[1,"src"],[0,"')\","]],"start1":25333,"start2":25333,"length1":15,"length2":11}]],"length":49714,"saved":false}
+{"ts":1366891653446,"patch":[[{"diffs":[[0,"d(\\\""],[-1,"span.i "],[0,"img\\"]],"start1":25313,"start2":25313,"length1":15,"length2":8}]],"length":49707,"saved":false}
+{"ts":1366891785256,"patch":[[{"diffs":[[0,"ind("],[-1,"\\\"img\\\""],[1,"'img'"],[0,").at"]],"start1":25311,"start2":25311,"length1":15,"length2":13}]],"length":49705,"saved":false}
+{"ts":1366893144486,"patch":[[{"diffs":[[0,"ce('"],[-1,"images:"],[1,"/thumb/"],[0,"',\\\""]],"start1":25387,"start2":25387,"length1":15,"length2":15}]],"length":49705,"saved":false}
+{"ts":1366893171252,"patch":[[{"diffs":[[0,"        "],[-1,"//"],[0,"imgSrcSe"]],"start1":25130,"start2":25130,"length1":18,"length2":16},{"diffs":[[0,"ind("],[-1,"\\\""],[1,"'"],[0,"span.i"],[-1,"h[id]\\\""],[1,"'"],[0,").attr('"],[-1,"id')\",\r\n                    imgSrcSelector: \"\\\"http://images.craigslist.org/\\\"+$elem.find('img').attr('src"],[1,"data-id"],[0,"')\","]],"start1":25196,"start2":25196,"length1":137,"length2":31}]],"length":49597,"saved":false}
