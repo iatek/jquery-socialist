@@ -50,7 +50,7 @@
                             nw.cb=function(newElement){queue.push(newElement)};
                             var reqUrl = nw.url;
                             // replace params in request url
-                            reqUrl = reqUrl.replace("|id|",item.id);
+                            reqUrl = reqUrl.replace("|id|",encodeURIComponent(item.id));
                             reqUrl = reqUrl.replace("|areaName|",item.areaName);
                             reqUrl = reqUrl.replace("|apiKey|",item.apiKey);
                             reqUrl = reqUrl.replace("|num|",settings.maxResults);
