@@ -1,3 +1,8 @@
+
+This project is no longer being maintained due to most social API's no requiring OAuth and some level of server-side authentication. The original intent of this project was solely browser-side JavaScript.
+--
+
+
 jquery-socialist -  A jQuery social plugin for creating streams from social networks and feeds
 ================
 
